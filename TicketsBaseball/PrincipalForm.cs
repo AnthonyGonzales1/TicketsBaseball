@@ -9,11 +9,18 @@ using System.Windows.Forms;
 using TicketsDeportivos.UI.Registros;
 using TicketsDeportivos.UI.Consultas;
 using TicketsDeportivos.UI.Reportes;
+using TicketsDeportivos.BLL;
+using TicketsDeportivos.Entidades;
+using System.Linq.Expressions;
 
 namespace TicketsDeportivos
 {
     public partial class PrincipalForm : Form
     {
+        Expression<Func<Venta, bool>> filtrar = x => true;
+        Expression<Func<Partido, bool>> filtrar1 = x => true;
+        Expression<Func<TipoPartido, bool>> filtrar2 = x => true;
+        Expression<Func<Usuario, bool>> filtrar3 = x => true;
         public PrincipalForm()
         {
             InitializeComponent();
@@ -63,28 +70,52 @@ namespace TicketsDeportivos
 
         private void ReporteUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UsuarioReviewer usuarioReviewer = new UsuarioReviewer(BLL.UsuarioBLL.GetList(filtrar3));
+            {
+                usuarioReviewer.Show();
+            }
         }
 
         private void ReporteTipoPartidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TipoPartidoReviewer tipoPartidoReviewer = new TipoPartidoReviewer(BLL.TipoPartidosBLL.GetList(filtrar2));
+            {
+                tipoPartidoReviewer.Show();
+            }
         }
 
         private void ReportePartidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            PartidoReviewer partidoReviewer = new PartidoReviewer(BLL.PartidoBLL.GetList(filtrar1));
+            {
+                partidoReviewer.Show();
+            }
         }
 
         private void ReporteVentasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            VentasReviewer ventasReviewer = new VentasReviewer(BLL.VentasBLL.GetList(filtrar));
+            {
+                ventasReviewer.Show();
+            }
         }
 
         private void RegistroPartidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PartidosForm partidosForm = new PartidosForm();
             partidosForm.Show();
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TicketsDeportivos.About about = new TicketsDeportivos.About();
+            about.Show();
+        }
+
+        private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help help = new Help();
+            help.Show();
         }
     }
 }

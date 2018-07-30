@@ -27,10 +27,8 @@ namespace TicketsDeportivos.Entidades
             this.Precio = 0;
         }
 
-        public PartidoDetalle(int id, int partidoId, string descripcion, int cantidad, decimal precio)
+        public PartidoDetalle(string descripcion, int cantidad, decimal precio)
         {
-            this.Id = id;
-            this.PartidoId = partidoId;
             this.Descripcion = descripcion;
             this.Cantidad = cantidad;
             this.Precio = precio;

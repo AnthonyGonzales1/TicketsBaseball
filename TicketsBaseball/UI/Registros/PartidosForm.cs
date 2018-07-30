@@ -113,7 +113,13 @@ namespace TicketsDeportivos.UI.Registros
                     "Debes ingresar un Precio");
                 paso = true;
             }
-            
+            if (PartidodataGridView.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow item in PartidodataGridView.Rows)
+                {
+                    partido.AgregarTickets(item.Cells["Descripcion"].Value.ToString(), Convert.ToInt32(item.Cells["CantDisponible"].Value), Convert.ToDecimal(item.Cells["PrecioTicket"].Value));
+                }
+            }
             else
             {
                 MensajeError("Error al guardar debido a que no agrego Tickets!");
@@ -129,6 +135,9 @@ namespace TicketsDeportivos.UI.Registros
             NombrePartidotextBox.Text = partido.Nombre.ToString();
             FechadateTimePicker.Value = partido.Fecha;
             LugarPartidotextBox.Text = partido.Lugar.ToString();
+            DescripciontextBox.Text = partido.Descripcion.ToString();
+            CantidadnumericUpDown.Value = partido.Cantidad ;
+            PrecionumericUpDown.Value = partido.Precio;
             foreach (var item in partido.Detalle)
             {
                 PartidodataGridView.Rows.Add(item.Descripcion, item.Cantidad, item.Precio);
@@ -152,7 +161,7 @@ namespace TicketsDeportivos.UI.Registros
             partido.Lugar = LugarPartidotextBox.Text;
             partido.Descripcion = DescripciontextBox.Text;
             partido.Cantidad = Convert.ToInt32(CantidadnumericUpDown.Value);
-            partido.Precio = Convert.ToDecimal(CantidadnumericUpDown.Value);
+            partido.Precio = Convert.ToDecimal(PrecionumericUpDown.Value);
 
             return partido;
         }
@@ -271,36 +280,25 @@ namespace TicketsDeportivos.UI.Registros
                 return;
             }
         }
-
-        public void Columnas()
-        {
-            PartidodataGridView.Columns["Id"].Visible = false;
-            PartidodataGridView.Columns["PartidoId"].Visible = false;
-            PartidodataGridView.Columns["Descripcion"].Visible = false;
-            PartidodataGridView.Columns["Cantidad"].Visible = false;
-            PartidodataGridView.Columns["Precio"].Visible = false;
-        }
-
+        
         private void Agregarbutton_Click_1(object sender, EventArgs e)
         {
-            List<PartidoDetalle> detalle = new List<PartidoDetalle>();
-            if (PartidodataGridView.DataSource != null)
+
+            int cant = 0;
+            int pre = 0;
+            int.TryParse(CantidadnumericUpDown.Text, out cant);
+            int.TryParse(PrecionumericUpDown.Text, out pre);
+
+            if (!DescripciontextBox.Text.Equals("") && !CantidadnumericUpDown.Text.Equals("") && !PrecionumericUpDown.Text.Equals(""))
             {
-                detalle = (List<PartidoDetalle>)PartidodataGridView.DataSource;
+                PartidodataGridView.Rows.Add(DescripciontextBox.Text, cant, pre);
+                DescripciontextBox.Clear();
+                CantidadnumericUpDown.Value=0;
+                PrecionumericUpDown.Value=0;
             }
-        
             else
             {
-                detalle.Add(
-                    new PartidoDetalle(id:(int)Convert.ToInt32(IdnumericUpDown.Value),
-                    partidoId: (int)TipoPartidocomboBox.SelectedValue,
-                    descripcion: DescripciontextBox.Text,
-                    cantidad: (int)Convert.ToInt32(CantidadnumericUpDown.Value),
-                    precio: (decimal)PrecionumericUpDown.Value)
-                    );
-                
-                PartidodataGridView.DataSource = detalle;
-                
+                MensajeError("Error al agregar debido a que hay campos vacios!!!");
             }
         }
         

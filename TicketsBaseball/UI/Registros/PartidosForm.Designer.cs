@@ -53,6 +53,9 @@
             this.CantidadnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.PrecionumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.PartidodataGridView = new System.Windows.Forms.DataGridView();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).BeginInit();
@@ -294,11 +297,37 @@
             // 
             // PartidodataGridView
             // 
+            this.PartidodataGridView.AllowUserToAddRows = false;
+            this.PartidodataGridView.AllowUserToOrderColumns = true;
             this.PartidodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartidodataGridView.Location = new System.Drawing.Point(335, 254);
+            this.PartidodataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Descripcion,
+            this.CantDisponible,
+            this.PrecioTicket});
+            this.PartidodataGridView.Location = new System.Drawing.Point(335, 247);
             this.PartidodataGridView.Name = "PartidodataGridView";
-            this.PartidodataGridView.Size = new System.Drawing.Size(285, 121);
+            this.PartidodataGridView.ReadOnly = true;
+            this.PartidodataGridView.RowHeadersVisible = false;
+            this.PartidodataGridView.Size = new System.Drawing.Size(298, 128);
             this.PartidodataGridView.TabIndex = 49;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // CantDisponible
+            // 
+            this.CantDisponible.HeaderText = "CantDisponible";
+            this.CantDisponible.Name = "CantDisponible";
+            this.CantDisponible.ReadOnly = true;
+            // 
+            // PrecioTicket
+            // 
+            this.PrecioTicket.HeaderText = "PrecioTicket";
+            this.PrecioTicket.Name = "PrecioTicket";
+            this.PrecioTicket.ReadOnly = true;
             // 
             // PartidosForm
             // 
@@ -367,5 +396,8 @@
         private System.Windows.Forms.NumericUpDown CantidadnumericUpDown;
         private System.Windows.Forms.NumericUpDown PrecionumericUpDown;
         private System.Windows.Forms.DataGridView PartidodataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CantDisponible;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTicket;
     }
 }
