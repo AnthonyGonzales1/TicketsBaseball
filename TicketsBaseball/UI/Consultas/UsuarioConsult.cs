@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using TicketsDeportivos.Entidades;
+using TicketsDeportivos.UI.Reportes;
 
 namespace TicketsDeportivos.UI.Consultas
 {
@@ -135,7 +136,10 @@ namespace TicketsDeportivos.UI.Consultas
 
         private void Imprimirbutton_Click(object sender, EventArgs e)
         {
-
+            UsuarioReviewer usuarioReviewer = new UsuarioReviewer(BLL.UsuarioBLL.GetList(filtrar));
+            {
+                usuarioReviewer.Show();
+            }
         }
 
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)

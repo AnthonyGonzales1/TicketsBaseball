@@ -157,6 +157,42 @@
     <Compile Include="UI\Reportes\PartidoReviewer.Designer.cs">
       <DependentUpon>PartidoReviewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\TipoPartidoCrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TipoPartidoCrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\TipoPartidoReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\TipoPartidoReviewer.Designer.cs">
+      <DependentUpon>TipoPartidoReviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\UsuarioCrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsuarioCrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\UsuarioReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\UsuarioReviewer.Designer.cs">
+      <DependentUpon>UsuarioReviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\VentasCrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasCrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\VentasReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\VentasReviewer.Designer.cs">
+      <DependentUpon>VentasReviewer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +245,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\PartidoReviewer.resx">
       <DependentUpon>PartidoReviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\TipoPartidoCrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TipoPartidoCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\TipoPartidoReviewer.resx">
+      <DependentUpon>TipoPartidoReviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\UsuarioCrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>UsuarioCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\UsuarioReviewer.resx">
+      <DependentUpon>UsuarioReviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\VentasCrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\VentasReviewer.resx">
+      <DependentUpon>VentasReviewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

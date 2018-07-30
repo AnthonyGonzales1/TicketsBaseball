@@ -62,7 +62,7 @@ namespace TicketsDeportivos.UI.Registros
             UsuarioscomboBox.ResetText();
             PartidocomboBox.ResetText();
             TotaltextBox.Clear();
-            CantidadtextBox.Clear();
+            CantidanumericUpDown.Value=0;
             DescripcionrichTextBox.Clear();
             VentadataGridView.Rows.Clear();
         }
@@ -70,14 +70,21 @@ namespace TicketsDeportivos.UI.Registros
         private Venta LlenaClase()
         {
             Venta venta = new Venta();
-
-            venta.VentaId = Convert.ToInt32(IdnumericUpDown.Value);
-            venta.UsuarioId = Convert.ToInt32(UsuarioscomboBox.Text);
+            if (venta.VentaId == 0)
+            {
+                venta.VentaId = 0;
+            }
+            else
+            {
+                venta.VentaId = Convert.ToInt32(venta.VentaId);
+            }
+            
+            venta.UsuarioId = Convert.ToInt32(UsuarioscomboBox.SelectedValue);
             venta.Fecha = FechadateTimePicker.Value;
-            venta.Ticket = Convert.ToInt32(TicketcomboBox.Text);
-            venta.Cantidad = Convert.ToInt32(CantidadtextBox.Text);
+            venta.Ticket = Convert.ToInt32(TicketcomboBox.SelectedValue);
+            venta.Cantidad = Convert.ToInt32(CantidanumericUpDown.Value);
             venta.Descripcion = DescripcionrichTextBox.Text;
-            venta.Total = Convert.ToInt32(TotaltextBox.Text);
+            venta.Total = Convert.ToInt32(TotaltextBox.SelectedText);
            
             return venta;
         }
@@ -110,9 +117,9 @@ namespace TicketsDeportivos.UI.Registros
                 paso = true;
             }
 
-            if (error == 2 && string.IsNullOrWhiteSpace(CantidadtextBox.Text))
+            if (error == 2 && CantidanumericUpDown.Value == 0)
             {
-                errorProvider.SetError(CantidadtextBox,
+                errorProvider.SetError(CantidanumericUpDown,
                     "Debes ingresar una Cantidad");
                 paso = true;
             }
@@ -150,7 +157,7 @@ namespace TicketsDeportivos.UI.Registros
             UsuarioscomboBox.Text = venta.UsuarioId.ToString();
             FechadateTimePicker.Text = venta.Fecha.ToString();
             TicketcomboBox.Text = venta.Ticket.ToString();
-            CantidadtextBox.Text = venta.Cantidad.ToString();
+            CantidanumericUpDown.Value = venta.Cantidad;
             DescripcionrichTextBox.Text = venta.Descripcion.ToString();
             TotaltextBox.Text = venta.Total.ToString();
             foreach (var item in venta.Ventapartido)
@@ -170,11 +177,11 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Agregarbutton_Click(object sender, EventArgs e)
         {
-            int precio = 0;
+            decimal precio = 0;
             int cantidad = 0;
-            int.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
-            int.TryParse(CantidadtextBox.Text, out cantidad);
-            if (CantidadtextBox.Text.Length > 0)
+            decimal.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
+            int.TryParse(CantidanumericUpDown.Text, out cantidad);
+            if (CantidanumericUpDown.Text.Length > 0)
             {
                 VentadataGridView.Rows.Add(PartidocomboBox.SelectedValue, PartidocomboBox.Text);
                 TotaltextBox.Text = (precio * cantidad).ToString();
@@ -222,10 +229,10 @@ namespace TicketsDeportivos.UI.Registros
                 if (venta != null)
                 {
                     IdnumericUpDown.Value = venta.VentaId;
-                    UsuarioscomboBox.Text = venta.UsuarioId.ToString();
-                    FechadateTimePicker.Text = venta.Fecha.ToString();
+                    UsuarioscomboBox.SelectedValue = venta.UsuarioId;
+                    FechadateTimePicker.Value = venta.Fecha;
                     TicketcomboBox.Text = venta.Ticket.ToString();
-                    CantidadtextBox.Text = venta.Cantidad.ToString();
+                    CantidanumericUpDown.Value = venta.Cantidad;
                     DescripcionrichTextBox.Text = venta.Descripcion.ToString();
                     TotaltextBox.Text = venta.Total.ToString();
                     
@@ -281,20 +288,6 @@ namespace TicketsDeportivos.UI.Registros
             ven.Show();
         }
 
-        private void CantidadtextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(CantidadtextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-        }
-
         private void DescripcionrichTextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 46) || (e.KeyChar == 44) || (e.KeyChar == 32))
@@ -324,6 +317,20 @@ namespace TicketsDeportivos.UI.Registros
             if (e.KeyChar == 13)
             {
                 Buscarbutton.Focus();
+            }
+        }
+
+        private void CantidanumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127))
+            {
+                e.Handled = false;
+                errorProvider.Clear();
+            }
+            else
+            {
+                e.Handled = true;
+                errorProvider.SetError(CantidanumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
             }
         }
     }

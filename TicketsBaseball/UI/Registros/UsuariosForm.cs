@@ -22,8 +22,15 @@ namespace TicketsDeportivos.UI.Registros
         private Usuario LlenaClase()
         {
             Usuario usuario = new Usuario();
+            if (usuario.UsuarioId == 0)
+            {
+                usuario.UsuarioId = 0;
+            }
+            else
+            {
+                usuario.UsuarioId = Convert.ToInt32(usuario.UsuarioId);
+            }
             
-            usuario.UsuarioId = Convert.ToInt32(IdnumericUpDown.Value);
             usuario.Nombres = NombrestextBox.Text;
             usuario.Apellidos = ApellidostextBox.Text;
             usuario.Telefono = TelefonomaskedTextBox.Text;
@@ -32,9 +39,16 @@ namespace TicketsDeportivos.UI.Registros
             usuario.NombreUsuario = NombreUsuariotextBox.Text;
             usuario.Contrasena = ContrasenatextBox.Text;
             usuario.ConfirmarContrasena = ConfirmarContrasenatextBox.Text;
-            usuario.Activo = Convert.ToInt32(ActivocheckBox.Text);
-            usuario.Foto = FotopictureBox.Text;
-            
+            if (usuario.Activo == 1)
+            {
+                ActivocheckBox.Checked = true;
+            }
+            else
+            {
+                ActivocheckBox.Checked = false;
+            }
+            usuario.Foto = FotopictureBox.ImageLocation;
+
             return usuario;
         }
 

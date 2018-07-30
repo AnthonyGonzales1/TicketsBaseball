@@ -39,9 +39,9 @@ namespace TicketsDeportivos.Entidades
             this.PartidoId = partidoid;
         }
 
-        public void AgregarTickets(string descripcion, int cantidad, decimal precio)
+        public void AgregarTickets(int id, int partidoId, string descripcion, int cantidad, decimal precio)
         {
-            this.Detalle.Add(new PartidoDetalle(descripcion, cantidad, precio));
+            this.Detalle.Add(new PartidoDetalle(id, partidoId, descripcion, cantidad, precio));
         }
     }
 }

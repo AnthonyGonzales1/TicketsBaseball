@@ -39,7 +39,7 @@
             this.PartidoCrystalReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PartidoCrystalReportViewer.Location = new System.Drawing.Point(0, 0);
             this.PartidoCrystalReportViewer.Name = "PartidoCrystalReportViewer";
-            this.PartidoCrystalReportViewer.Size = new System.Drawing.Size(800, 450);
+            this.PartidoCrystalReportViewer.Size = new System.Drawing.Size(712, 450);
             this.PartidoCrystalReportViewer.TabIndex = 0;
             this.PartidoCrystalReportViewer.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(712, 450);
             this.Controls.Add(this.PartidoCrystalReportViewer);
             this.Name = "PartidoReviewer";
             this.Text = "PartidoReviewer";

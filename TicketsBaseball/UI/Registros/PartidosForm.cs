@@ -40,8 +40,8 @@ namespace TicketsDeportivos.UI.Registros
             PartidodataGridView.Rows.Clear();
             //TipoPartidocomboBox.SelectedIndex = -1;
             DescripciontextBox.Clear();
-            CantidadtextBox.Clear();
-            PreciotextBox.Clear();
+            CantidadnumericUpDown.Value = 0;
+            PrecionumericUpDown.Value = 0;
             TipoPartidocomboBox.ResetText();
         }
 
@@ -101,25 +101,19 @@ namespace TicketsDeportivos.UI.Registros
                     "Debes ingresar una Descripcion");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrEmpty(CantidadtextBox.Text))
+            if (error == 1 && CantidadnumericUpDown.Value == 0)
             {
-                errorProvider.SetError(CantidadtextBox,
+                errorProvider.SetError(CantidadnumericUpDown,
                     "Debes ingresar una Cantidad");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrEmpty(PreciotextBox.Text))
+            if (error == 2 && CantidadnumericUpDown.Value == 0)
             {
-                errorProvider.SetError(PreciotextBox,
+                errorProvider.SetError(CantidadnumericUpDown,
                     "Debes ingresar un Precio");
                 paso = true;
             }
-            if (PartidodataGridView.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow item in PartidodataGridView.Rows)
-                {
-                    partido.AgregarTickets(item.Cells["Descripcion"].Value.ToString(), (int)item.Cells["Cantidad"].Value, (int)item.Cells["Precio"].Value);
-                }
-            }
+            
             else
             {
                 MensajeError("Error al guardar debido a que no agrego Tickets!");
@@ -132,8 +126,8 @@ namespace TicketsDeportivos.UI.Registros
         private void LlenarCampos()
         {
             TipoPartidocomboBox.Text = partido.TipoPartidoId.ToString();
-            NombrePartidotextBox.Text = partido.TipoPartidoId.ToString();
-            FechadateTimePicker.Text = partido.Fecha.ToString();
+            NombrePartidotextBox.Text = partido.Nombre.ToString();
+            FechadateTimePicker.Value = partido.Fecha;
             LugarPartidotextBox.Text = partido.Lugar.ToString();
             foreach (var item in partido.Detalle)
             {
@@ -144,16 +138,21 @@ namespace TicketsDeportivos.UI.Registros
         private Partido Llenaclase()
         {
             Partido partido = new Partido();
-
-            CantidadtextBox.Text = 0.ToString();
-            partido.PartidoId = Convert.ToInt32(IdnumericUpDown.Value);
-            partido.TipoPartidoId = Convert.ToInt32(TipoPartidocomboBox.Text);
+            if (partido.PartidoId == 0)
+            {
+                partido.PartidoId = 0;
+            }
+            else
+            {
+                partido.PartidoId = Convert.ToInt32(partido.PartidoId);
+            }
+            partido.TipoPartidoId = Convert.ToInt32(TipoPartidocomboBox.SelectedValue);
             partido.Nombre = NombrePartidotextBox.Text;
             partido.Fecha = FechadateTimePicker.Value;
             partido.Lugar = LugarPartidotextBox.Text;
             partido.Descripcion = DescripciontextBox.Text;
-            partido.Cantidad = Convert.ToInt32(CantidadtextBox.Text);
-            partido.Precio = Convert.ToDecimal(PreciotextBox.Text);
+            partido.Cantidad = Convert.ToInt32(CantidadnumericUpDown.Value);
+            partido.Precio = Convert.ToDecimal(CantidadnumericUpDown.Value);
 
             return partido;
         }
@@ -174,11 +173,11 @@ namespace TicketsDeportivos.UI.Registros
                     IdnumericUpDown.Value = partido.PartidoId;
                     TipoPartidocomboBox.Text = partido.TipoPartidoId.ToString();
                     NombrePartidotextBox.Text = partido.Nombre.ToString();
-                    FechadateTimePicker.Text = partido.Fecha.ToString();
+                    FechadateTimePicker.Value = partido.Fecha;
                     LugarPartidotextBox.Text = partido.Lugar.ToString();
                     DescripciontextBox.Text = partido.Descripcion.ToString();
-                    CantidadtextBox.Text = partido.Cantidad.ToString();
-                    PreciotextBox.Text = partido.Precio.ToString();
+                    CantidadnumericUpDown.Value = partido.Cantidad;
+                    PrecionumericUpDown.Value = partido.Precio;
 
                 }
                 else
@@ -263,24 +262,45 @@ namespace TicketsDeportivos.UI.Registros
         {
 
         }
+        private void CantidadnumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (Validar(2))
+            {
+                MessageBox.Show("Debe Buscar Antes de poner una cantidad");
+                CantidadnumericUpDown.Value = 0;
+                return;
+            }
+        }
+
+        public void Columnas()
+        {
+            PartidodataGridView.Columns["Id"].Visible = false;
+            PartidodataGridView.Columns["PartidoId"].Visible = false;
+            PartidodataGridView.Columns["Descripcion"].Visible = false;
+            PartidodataGridView.Columns["Cantidad"].Visible = false;
+            PartidodataGridView.Columns["Precio"].Visible = false;
+        }
 
         private void Agregarbutton_Click_1(object sender, EventArgs e)
         {
-            int cant = 0;
-            int pre = 0;
-            int.TryParse(CantidadtextBox.Text, out cant);
-            int.TryParse(PreciotextBox.Text, out pre);
-
-            if (!DescripciontextBox.Text.Equals("") && !CantidadtextBox.Text.Equals("") && !PreciotextBox.Text.Equals(""))
+            List<PartidoDetalle> detalle = new List<PartidoDetalle>();
+            if (PartidodataGridView.DataSource != null)
             {
-                PartidodataGridView.Rows.Add(DescripciontextBox.Text, cant, pre);
-                DescripciontextBox.Clear();
-                CantidadtextBox.Clear();
-                PreciotextBox.Clear();
+                detalle = (List<PartidoDetalle>)PartidodataGridView.DataSource;
             }
+        
             else
             {
-                MensajeError("Error al agregar debido a que hay campos vacios!!!");
+                detalle.Add(
+                    new PartidoDetalle(id:(int)Convert.ToInt32(IdnumericUpDown.Value),
+                    partidoId: (int)TipoPartidocomboBox.SelectedValue,
+                    descripcion: DescripciontextBox.Text,
+                    cantidad: (int)Convert.ToInt32(CantidadnumericUpDown.Value),
+                    precio: (decimal)PrecionumericUpDown.Value)
+                    );
+                
+                PartidodataGridView.DataSource = detalle;
+                
             }
         }
         
@@ -316,28 +336,10 @@ namespace TicketsDeportivos.UI.Registros
             }
             if (e.KeyChar == 13)
             {
-                CantidadtextBox.Focus();
+                CantidadnumericUpDown.Focus();
             }
         }
-
-        private void PreciotextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(PreciotextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                Agregarbutton.Focus();
-            }
-        }
-
+        
         private void NombrePartidotextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 32) || (e.KeyChar == 13))
@@ -353,24 +355,6 @@ namespace TicketsDeportivos.UI.Registros
             if (e.KeyChar == 13)
             {
                 FechadateTimePicker.Focus();
-            }
-        }
-
-        private void CantidadtextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(CantidadtextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                PreciotextBox.Focus();
             }
         }
 
@@ -392,6 +376,41 @@ namespace TicketsDeportivos.UI.Registros
                 DescripciontextBox.Focus();
             }
         }
-        
+
+        private void CantidadnumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
+            {
+                e.Handled = false;
+                errorProvider.Clear();
+            }
+            else
+            {
+                e.Handled = true;
+                errorProvider.SetError(CantidadnumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
+            }
+            if (e.KeyChar == 13)
+            {
+                PrecionumericUpDown.Focus();
+            }
+        }
+
+        private void PrecionumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
+            {
+                e.Handled = false;
+                errorProvider.Clear();
+            }
+            else
+            {
+                e.Handled = true;
+                errorProvider.SetError(PrecionumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
+            }
+            if (e.KeyChar == 13)
+            {
+                Agregarbutton.Focus();
+            }
+        }
     }
 }

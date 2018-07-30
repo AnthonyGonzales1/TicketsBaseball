@@ -102,7 +102,16 @@ namespace TicketsDeportivos.UI.Registros
         }
         private TipoPartido LlenaClase()
         {
-            tipoPartido.TipoPartidoId = Convert.ToInt32(IdnumericUpDown.Value);
+            TipoPartido tipoPartido =new TipoPartido();
+            if (tipoPartido.TipoPartidoId == 0 )
+            {
+                tipoPartido.TipoPartidoId = 0;
+            }
+            else
+            {
+                tipoPartido.TipoPartidoId = Convert.ToInt32(tipoPartido.TipoPartidoId);
+
+            }
             tipoPartido.Descripcion = DescripciontextBox.Text;
 
             return tipoPartido;

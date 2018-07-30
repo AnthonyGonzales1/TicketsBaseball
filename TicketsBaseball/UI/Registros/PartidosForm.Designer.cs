@@ -37,8 +37,6 @@
             this.LugarPartidotextBox = new System.Windows.Forms.TextBox();
             this.NombrePartidotextBox = new System.Windows.Forms.TextBox();
             this.DescripciontextBox = new System.Windows.Forms.TextBox();
-            this.CantidadtextBox = new System.Windows.Forms.TextBox();
-            this.PreciotextBox = new System.Windows.Forms.TextBox();
             this.TipoPartidocomboBox = new System.Windows.Forms.ComboBox();
             this.Buscarbutton = new System.Windows.Forms.Button();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -46,19 +44,20 @@
             this.Guardarbutton = new System.Windows.Forms.Button();
             this.Nuevobutton = new System.Windows.Forms.Button();
             this.Agregarbutton = new System.Windows.Forms.Button();
-            this.PrecioTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PartidodataGridView = new System.Windows.Forms.DataGridView();
             this.LugarPartidolabel = new System.Windows.Forms.Label();
             this.FechaPartidolabel = new System.Windows.Forms.Label();
             this.NombrePartidolabel = new System.Windows.Forms.Label();
             this.TipoIdlabel = new System.Windows.Forms.Label();
             this.IdnumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CantidadnumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.PrecionumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.PartidodataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PrecionumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // Titulolabel
@@ -139,24 +138,6 @@
             this.DescripciontextBox.Size = new System.Drawing.Size(163, 20);
             this.DescripciontextBox.TabIndex = 40;
             this.DescripciontextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescripciontextBox_KeyPress);
-            // 
-            // CantidadtextBox
-            // 
-            this.CantidadtextBox.Location = new System.Drawing.Point(459, 115);
-            this.CantidadtextBox.MaxLength = 6;
-            this.CantidadtextBox.Name = "CantidadtextBox";
-            this.CantidadtextBox.Size = new System.Drawing.Size(162, 20);
-            this.CantidadtextBox.TabIndex = 41;
-            this.CantidadtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadtextBox_KeyPress);
-            // 
-            // PreciotextBox
-            // 
-            this.PreciotextBox.Location = new System.Drawing.Point(459, 165);
-            this.PreciotextBox.MaxLength = 6;
-            this.PreciotextBox.Name = "PreciotextBox";
-            this.PreciotextBox.Size = new System.Drawing.Size(162, 20);
-            this.PreciotextBox.TabIndex = 42;
-            this.PreciotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PreciotextBox_KeyPress);
             // 
             // TipoPartidocomboBox
             // 
@@ -243,43 +224,9 @@
             this.Agregarbutton.UseVisualStyleBackColor = true;
             this.Agregarbutton.Click += new System.EventHandler(this.Agregarbutton_Click_1);
             // 
-            // PrecioTicket
-            // 
-            this.PrecioTicket.HeaderText = "PrecioTicket";
-            this.PrecioTicket.Name = "PrecioTicket";
-            this.PrecioTicket.ReadOnly = true;
-            // 
-            // CantDisponible
-            // 
-            this.CantDisponible.HeaderText = "CantDisponible";
-            this.CantDisponible.Name = "CantDisponible";
-            this.CantDisponible.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            // 
-            // PartidodataGridView
-            // 
-            this.PartidodataGridView.AllowUserToAddRows = false;
-            this.PartidodataGridView.AllowUserToOrderColumns = true;
-            this.PartidodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartidodataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Descripcion,
-            this.CantDisponible,
-            this.PrecioTicket});
-            this.PartidodataGridView.Location = new System.Drawing.Point(323, 244);
-            this.PartidodataGridView.Name = "PartidodataGridView";
-            this.PartidodataGridView.ReadOnly = true;
-            this.PartidodataGridView.RowHeadersVisible = false;
-            this.PartidodataGridView.Size = new System.Drawing.Size(298, 128);
-            this.PartidodataGridView.TabIndex = 23;
             // 
             // LugarPartidolabel
             // 
@@ -329,11 +276,38 @@
             this.IdnumericUpDown.TabIndex = 46;
             this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
             // 
+            // CantidadnumericUpDown
+            // 
+            this.CantidadnumericUpDown.Location = new System.Drawing.Point(459, 116);
+            this.CantidadnumericUpDown.Name = "CantidadnumericUpDown";
+            this.CantidadnumericUpDown.Size = new System.Drawing.Size(162, 20);
+            this.CantidadnumericUpDown.TabIndex = 47;
+            this.CantidadnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadnumericUpDown_KeyPress);
+            // 
+            // PrecionumericUpDown
+            // 
+            this.PrecionumericUpDown.Location = new System.Drawing.Point(458, 162);
+            this.PrecionumericUpDown.Name = "PrecionumericUpDown";
+            this.PrecionumericUpDown.Size = new System.Drawing.Size(162, 20);
+            this.PrecionumericUpDown.TabIndex = 48;
+            this.PrecionumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrecionumericUpDown_KeyPress);
+            // 
+            // PartidodataGridView
+            // 
+            this.PartidodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PartidodataGridView.Location = new System.Drawing.Point(335, 254);
+            this.PartidodataGridView.Name = "PartidodataGridView";
+            this.PartidodataGridView.Size = new System.Drawing.Size(285, 121);
+            this.PartidodataGridView.TabIndex = 49;
+            // 
             // PartidosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 387);
+            this.Controls.Add(this.PartidodataGridView);
+            this.Controls.Add(this.PrecionumericUpDown);
+            this.Controls.Add(this.CantidadnumericUpDown);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);
             this.Controls.Add(this.Preciolabel);
@@ -347,8 +321,6 @@
             this.Controls.Add(this.LugarPartidotextBox);
             this.Controls.Add(this.NombrePartidotextBox);
             this.Controls.Add(this.DescripciontextBox);
-            this.Controls.Add(this.CantidadtextBox);
-            this.Controls.Add(this.PreciotextBox);
             this.Controls.Add(this.TipoPartidocomboBox);
             this.Controls.Add(this.Buscarbutton);
             this.Controls.Add(this.FechadateTimePicker);
@@ -356,13 +328,14 @@
             this.Controls.Add(this.Guardarbutton);
             this.Controls.Add(this.Nuevobutton);
             this.Controls.Add(this.Agregarbutton);
-            this.Controls.Add(this.PartidodataGridView);
             this.Name = "PartidosForm";
             this.Text = "PartidosForm";
             this.Load += new System.EventHandler(this.PartidosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PrecionumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,8 +351,6 @@
         private System.Windows.Forms.TextBox LugarPartidotextBox;
         private System.Windows.Forms.TextBox NombrePartidotextBox;
         private System.Windows.Forms.TextBox DescripciontextBox;
-        private System.Windows.Forms.TextBox CantidadtextBox;
-        private System.Windows.Forms.TextBox PreciotextBox;
         private System.Windows.Forms.ComboBox TipoPartidocomboBox;
         private System.Windows.Forms.Button Buscarbutton;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker;
@@ -387,15 +358,14 @@
         private System.Windows.Forms.Button Guardarbutton;
         private System.Windows.Forms.Button Nuevobutton;
         private System.Windows.Forms.Button Agregarbutton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTicket;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantDisponible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.DataGridView PartidodataGridView;
         private System.Windows.Forms.Label LugarPartidolabel;
         private System.Windows.Forms.Label FechaPartidolabel;
         private System.Windows.Forms.Label NombrePartidolabel;
         private System.Windows.Forms.Label TipoIdlabel;
         private System.Windows.Forms.NumericUpDown IdnumericUpDown;
+        private System.Windows.Forms.NumericUpDown CantidadnumericUpDown;
+        private System.Windows.Forms.NumericUpDown PrecionumericUpDown;
+        private System.Windows.Forms.DataGridView PartidodataGridView;
     }
 }

@@ -40,7 +40,6 @@
             this.VentaIdlabel = new System.Windows.Forms.Label();
             this.Imprimirbutton = new System.Windows.Forms.Button();
             this.Agregarbutton = new System.Windows.Forms.Button();
-            this.CantidadtextBox = new System.Windows.Forms.TextBox();
             this.DescripcionrichTextBox = new System.Windows.Forms.RichTextBox();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.UsuarioscomboBox = new System.Windows.Forms.ComboBox();
@@ -55,9 +54,11 @@
             this.EventoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.IdnumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CantidanumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.VentadataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CantidanumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // Titulolabel
@@ -179,15 +180,6 @@
             this.Agregarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Agregarbutton.UseVisualStyleBackColor = true;
             this.Agregarbutton.Click += new System.EventHandler(this.Agregarbutton_Click);
-            // 
-            // CantidadtextBox
-            // 
-            this.CantidadtextBox.Location = new System.Drawing.Point(390, 120);
-            this.CantidadtextBox.MaxLength = 3;
-            this.CantidadtextBox.Name = "CantidadtextBox";
-            this.CantidadtextBox.Size = new System.Drawing.Size(184, 20);
-            this.CantidadtextBox.TabIndex = 41;
-            this.CantidadtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadtextBox_KeyPress);
             // 
             // DescripcionrichTextBox
             // 
@@ -336,11 +328,20 @@
             this.IdnumericUpDown.TabIndex = 48;
             this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
             // 
+            // CantidanumericUpDown
+            // 
+            this.CantidanumericUpDown.Location = new System.Drawing.Point(390, 118);
+            this.CantidanumericUpDown.Name = "CantidanumericUpDown";
+            this.CantidanumericUpDown.Size = new System.Drawing.Size(184, 20);
+            this.CantidanumericUpDown.TabIndex = 49;
+            this.CantidanumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidanumericUpDown_KeyPress);
+            // 
             // VentasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 533);
+            this.Controls.Add(this.CantidanumericUpDown);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);
             this.Controls.Add(this.Totallabel);
@@ -353,7 +354,6 @@
             this.Controls.Add(this.VentaIdlabel);
             this.Controls.Add(this.Imprimirbutton);
             this.Controls.Add(this.Agregarbutton);
-            this.Controls.Add(this.CantidadtextBox);
             this.Controls.Add(this.DescripcionrichTextBox);
             this.Controls.Add(this.FechadateTimePicker);
             this.Controls.Add(this.UsuarioscomboBox);
@@ -370,6 +370,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.VentadataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CantidanumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,7 +388,6 @@
         private System.Windows.Forms.Label VentaIdlabel;
         private System.Windows.Forms.Button Imprimirbutton;
         private System.Windows.Forms.Button Agregarbutton;
-        private System.Windows.Forms.TextBox CantidadtextBox;
         private System.Windows.Forms.RichTextBox DescripcionrichTextBox;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker;
         private System.Windows.Forms.ComboBox UsuarioscomboBox;
@@ -402,5 +402,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EventoId;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.NumericUpDown IdnumericUpDown;
+        private System.Windows.Forms.NumericUpDown CantidanumericUpDown;
     }
 }

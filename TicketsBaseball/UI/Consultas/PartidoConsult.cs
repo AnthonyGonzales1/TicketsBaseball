@@ -9,8 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using TicketsDeportivos.Entidades;
 using TicketsDeportivos.BLL;
-
-using TicketsDeportivos;
+using TicketsDeportivos.UI.Reportes;
 
 namespace TicketsDeportivos.UI.Consultas
 {
@@ -205,10 +204,10 @@ namespace TicketsDeportivos.UI.Consultas
 
         private void Imprimirbutton_Click(object sender, EventArgs e)
         {
-            /*ReporteFacturas abrir = new ReporteFacturas(BLL.FacturacionBLL.GetList(filtrar));
+            PartidoReviewer partidoReviewer = new PartidoReviewer(BLL.PartidoBLL.GetList(filtrar));
             {
-                abrir.Show();
-            }*/
+                partidoReviewer.Show();
+            }
         }
 
         private void CanttextBox_TextChanged(object sender, EventArgs e)

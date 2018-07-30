@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 using TicketsDeportivos.Entidades;
+using TicketsDeportivos.UI.Reportes;
 
 namespace TicketsDeportivos.UI.Consultas
 {
@@ -209,10 +210,11 @@ namespace TicketsDeportivos.UI.Consultas
 
         private void Imprimirbutton_Click(object sender, EventArgs e)
         {
-            /*ReporteFacturas abrir = new ReporteFacturas(BLL.FacturacionBLL.GetList(filtrar));
+            VentasReviewer ventasReviewer = new VentasReviewer(BLL.VentasBLL.GetList(filtrar));
             {
-                abrir.Show();
-            }*/
+                ventasReviewer.Show();
+            }
+
         }
 
         private void VentasConsult_Load(object sender, EventArgs e)

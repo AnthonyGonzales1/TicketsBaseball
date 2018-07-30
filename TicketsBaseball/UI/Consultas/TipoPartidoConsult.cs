@@ -8,13 +8,14 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 using TicketsDeportivos.Entidades;
+using TicketsDeportivos.UI.Reportes;
 
 namespace TicketsDeportivos.UI.Consultas
 {
     public partial class TipoPartidoConsult : Form
     {
         TipoPartido tipoPartido = new TipoPartido();
-        Expression<Func<Partido, bool>> filtrar = x => true;
+        Expression<Func<TipoPartido, bool>> filtrar = x => true;
         public TipoPartidoConsult()
         {
             InitializeComponent();
@@ -78,9 +79,11 @@ namespace TicketsDeportivos.UI.Consultas
         }
 
         private void Imprimirbutton_Click(object sender, EventArgs e)
-        {/*
-            ReporteProducto abri = new ReporteProducto(BLL.ProductoBLL.GetList(filtrar));
-            abri.Show();*/
+        {
+            TipoPartidoReviewer tipoPartidoReviewer = new TipoPartidoReviewer(BLL.TipoPartidosBLL.GetList(filtrar));
+            {
+                tipoPartidoReviewer.Show();
+            }
         }
 
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)

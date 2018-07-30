@@ -31,12 +31,6 @@ namespace TicketsDeportivos
             tipoPartidosForm.Show();
         }
 
-        private void RegistroPartidosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PartidosForm partidosForm = new PartidosForm();
-            partidosForm.Show();
-        }
-
         private void RegistroVentasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             VentasForm ventasForm = new VentasForm();
@@ -85,6 +79,12 @@ namespace TicketsDeportivos
         private void ReporteVentasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void RegistroPartidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PartidosForm partidosForm = new PartidosForm();
+            partidosForm.Show();
         }
     }
 }
