@@ -1,0 +1,4 @@
+CREATE DATABASE TicketsDb
+GO
+USE TicketsDb
+GO
