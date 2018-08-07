@@ -1,4 +1,2 @@
-CREATE DATABASE TicketsDb
-GO
-USE TicketsDb
+Create DataBase TicketsDb
 GO

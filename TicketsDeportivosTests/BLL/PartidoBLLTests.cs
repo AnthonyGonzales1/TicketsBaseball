@@ -19,9 +19,9 @@ namespace TicketsDeportivos.BLL.Tests
             bool paso;
             Partido partido = new Partido();
             partido.PartidoId = 3;
-            partido.Nombre = "Prueba";
-            partido.Cantidad = 10;
-            paso = PartidoBLL.Guardar(partido);
+            partido.NombrePartido = "Prueba";
+            partido.CantidadDisponible = 10;
+            paso = PartidosBLL.Guardar(partido);
 
             Assert.AreEqual(paso,true);
         }
@@ -31,7 +31,7 @@ namespace TicketsDeportivos.BLL.Tests
         {
             int id = 3;
             bool paso;
-            paso = PartidoBLL.Eliminar(id);
+            paso = PartidosBLL.Eliminar(id);
            
             Assert.AreEqual(paso, false);
         }
@@ -42,9 +42,9 @@ namespace TicketsDeportivos.BLL.Tests
             bool paso;
             Partido partido = new Partido();
             partido.PartidoId = 3;
-            partido.Nombre = "Prueba";
-            partido.Cantidad = 8;
-            paso = PartidoBLL.Modificar(partido);
+            partido.NombrePartido = "Prueba";
+            partido.CantidadDisponible = 8;
+            paso = PartidosBLL.Modificar(partido);
 
             Assert.AreEqual(paso, false);
         }
@@ -54,17 +54,17 @@ namespace TicketsDeportivos.BLL.Tests
         {
             int id = 3;
             Partido partido = new Partido();
-            partido = PartidoBLL.Buscar(id);
+            partido = PartidosBLL.Buscar(id);
             Assert.IsNotNull(partido);
         }
 
         [TestMethod()]
-        public void GetListTest(Expression<Func<Partido, bool>> expression)
+        public void GetListTest(Expression<Func<Partido, bool>> parti)
         {
             Contexto contexto = new Contexto();
 
             List<Partido> partidos = new List<Partido>();
-            partidos = contexto.Partidos.Where(expression).ToList();
+            partidos = contexto.Partidos.Where(parti).ToList();
             Assert.IsNotNull(partidos);
         }
     }

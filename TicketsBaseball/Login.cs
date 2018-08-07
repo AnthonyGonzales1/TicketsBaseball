@@ -55,6 +55,8 @@ namespace TicketsDeportivos
 
         private void Entrarbutton_Click(object sender, EventArgs e)
         {
+
+
             int paso = 0;
             Expression<Func<Usuario, bool>> filtrar = x => true;
             List<Usuario> user = new List<Usuario>();
@@ -78,10 +80,10 @@ namespace TicketsDeportivos
             }
             PrincipalForm principalForm = new PrincipalForm();
             principalForm.Show();
-            /*
+            
             filtrar = t => t.NombreUsuario.Equals(NombreUsuariotextBox.Text);
             user = BLL.UsuarioBLL.GetList(filtrar);
-            
+            /*
             if (user.Exists(x => x.NombreUsuario == NombreUsuariotextBox.Text) && user.Exists(x => x.Contrasena == ContrasenatextBox.Text))
             {
                 foreach (var item in BLL.UsuarioBLL.GetList(x => x.NombreUsuario == NombreUsuariotextBox.Text))
@@ -96,8 +98,8 @@ namespace TicketsDeportivos
                 errorProvider.SetError(ContrasenatextBox, "Incorrecto");
                 errorProvider.SetError(ContrasenatextBox, "Incorrecto");
 
-            }
-            ContrasenatextBox.MaxLength = 14;*/
+            }*/
+            ContrasenatextBox.MaxLength = 14;
         }
     }
 }

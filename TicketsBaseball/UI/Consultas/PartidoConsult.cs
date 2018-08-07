@@ -51,9 +51,9 @@ namespace TicketsDeportivos.UI.Consultas
             int id;
             decimal valor = 0;
 
-            if (FiltrocomboBox.Text == string.Empty && FechacheckBox.Checked == true)
+            if (FiltrocomboBox.Text == string.Empty && FechaPartidocheckBox.Checked == true)
             {
-                filtrar = t => true && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                filtrar = t => true && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
             }
             else
             {
@@ -72,9 +72,9 @@ namespace TicketsDeportivos.UI.Consultas
 
                     }
                     id = int.Parse(CriteriotextBox.Text);
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.PartidoId == id && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.PartidoId == id && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
@@ -92,9 +92,9 @@ namespace TicketsDeportivos.UI.Consultas
 
                     }
                     id = int.Parse(CriteriotextBox.Text);
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.TipoPartidoId == id && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.TipoPartidoId == id && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
@@ -110,13 +110,13 @@ namespace TicketsDeportivos.UI.Consultas
                         MessageBox.Show("Introduce un caracter");
                         return;
                     }
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.Nombre.Contains(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.NombrePartido.Contains(CriteriotextBox.Text) && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.Nombre.Contains(CriteriotextBox.Text);
+                        filtrar = t => t.NombrePartido.Contains(CriteriotextBox.Text);
                     }
 
                     break;
@@ -128,13 +128,13 @@ namespace TicketsDeportivos.UI.Consultas
                         MessageBox.Show("Introduce un caracter");
                         return;
                     }
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.Lugar.Contains(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.LugarPartido.Contains(CriteriotextBox.Text) && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.Lugar.Contains(CriteriotextBox.Text);
+                        filtrar = t => t.LugarPartido.Contains(CriteriotextBox.Text);
                     }
 
                     break;
@@ -146,9 +146,9 @@ namespace TicketsDeportivos.UI.Consultas
                         MessageBox.Show("Introduce un caracter");
                         return;
                     }
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.Descripcion.Contains(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.Descripcion.Contains(CriteriotextBox.Text) && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
@@ -167,13 +167,13 @@ namespace TicketsDeportivos.UI.Consultas
                     }
 
                     valor = Convert.ToInt32(CriteriotextBox.Text);
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.Cantidad == Convert.ToInt32(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.CantidadDisponible == Convert.ToInt32(CriteriotextBox.Text) && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.Cantidad == Convert.ToInt32(CriteriotextBox.Text);
+                        filtrar = t => t.CantidadDisponible == Convert.ToInt32(CriteriotextBox.Text);
                     }
 
                     break;
@@ -186,25 +186,25 @@ namespace TicketsDeportivos.UI.Consultas
                         return;
                     }
                     valor = Convert.ToDecimal(CriteriotextBox.Text);
-                    if (FechacheckBox.Checked == true)
+                    if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.Precio == valor && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.PrecioTicket == valor && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.Precio == valor;
+                        filtrar = t => t.PrecioTicket == valor;
                     }
 
                     break;
             }
-            partidos = BLL.PartidoBLL.GetList(filtrar);
+            partidos = BLL.PartidosBLL.GetList(filtrar);
             PartidodataGridView.DataSource = partidos;
             CanttextBox.Text = PartidodataGridView.RowCount.ToString();
         }
 
         private void Imprimirbutton_Click(object sender, EventArgs e)
         {
-            PartidoReviewer partidoReviewer = new PartidoReviewer(BLL.PartidoBLL.GetList(filtrar));
+            PartidoReviewer partidoReviewer = new PartidoReviewer(BLL.PartidosBLL.GetList(filtrar));
             {
                 partidoReviewer.Show();
             }

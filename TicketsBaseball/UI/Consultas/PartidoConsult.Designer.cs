@@ -43,7 +43,7 @@
             this.CanttextBox = new System.Windows.Forms.TextBox();
             this.Cantlabel = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.FechacheckBox = new System.Windows.Forms.CheckBox();
+            this.FechaPartidocheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -225,24 +225,24 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // FechacheckBox
+            // FechaPartidocheckBox
             // 
-            this.FechacheckBox.AutoSize = true;
-            this.FechacheckBox.Checked = true;
-            this.FechacheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FechacheckBox.Location = new System.Drawing.Point(92, 41);
-            this.FechacheckBox.Name = "FechacheckBox";
-            this.FechacheckBox.Size = new System.Drawing.Size(107, 17);
-            this.FechacheckBox.TabIndex = 41;
-            this.FechacheckBox.Text = "Buscar por fecha";
-            this.FechacheckBox.UseVisualStyleBackColor = true;
+            this.FechaPartidocheckBox.AutoSize = true;
+            this.FechaPartidocheckBox.Checked = true;
+            this.FechaPartidocheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FechaPartidocheckBox.Location = new System.Drawing.Point(92, 41);
+            this.FechaPartidocheckBox.Name = "FechaPartidocheckBox";
+            this.FechaPartidocheckBox.Size = new System.Drawing.Size(107, 17);
+            this.FechaPartidocheckBox.TabIndex = 41;
+            this.FechaPartidocheckBox.Text = "Buscar por FechaPartido";
+            this.FechaPartidocheckBox.UseVisualStyleBackColor = true;
             // 
             // PartidoConsult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 400);
-            this.Controls.Add(this.FechacheckBox);
+            this.Controls.Add(this.FechaPartidocheckBox);
             this.Controls.Add(this.Imprimirbutton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -281,6 +281,6 @@
         private System.Windows.Forms.TextBox CanttextBox;
         private System.Windows.Forms.Label Cantlabel;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.CheckBox FechacheckBox;
+        private System.Windows.Forms.CheckBox FechaPartidocheckBox;
     }
 }

@@ -14,22 +14,12 @@ namespace TicketsDeportivos.UI.Registros
 {
     public partial class PartidosForm : Form
     {
+        public int RowSelected { get; set; }
+        List<PartidoDetalle> Detalle = new List<PartidoDetalle>();
         Partido partido = new Partido();
         public PartidosForm()
         {
             InitializeComponent();
-            LlenarComboBox();
-        }
-        private void LlenarComboBox()
-        {
-            Contexto contexto = new Contexto();
-
-            Repositorio<TipoPartido> tipoPartido = new Repositorio<TipoPartido>(new Contexto());
-            TipoPartidocomboBox.DataSource = tipoPartido.GetList(c => true);
-            TipoPartidocomboBox.DisplayMember = "Descripcion";
-            TipoPartidocomboBox.ValueMember = "TipoPartidoId";
-
-            Eliminarbutton.Enabled = false;
         }
 
         private void Limpiar()
@@ -37,12 +27,12 @@ namespace TicketsDeportivos.UI.Registros
             NombrePartidotextBox.Clear();
             LugarPartidotextBox.Clear();
             FechadateTimePicker.ResetText();
-            PartidodataGridView.Rows.Clear();
             //TipoPartidocomboBox.SelectedIndex = -1;
-            DescripciontextBox.Clear();
-            CantidadnumericUpDown.Value = 0;
-            PrecionumericUpDown.Value = 0;
-            TipoPartidocomboBox.ResetText();
+            CantidadtextBox.Clear();
+            TipoPartidocomboBox.Text =string.Empty;
+            PreciocomboBox.Text = string.Empty;
+            TicketcomboBox.Text = string.Empty;
+            DescripcioncomboBox.Text = string.Empty;
         }
 
         private void MensajeOk(string mensaje)
@@ -66,63 +56,32 @@ namespace TicketsDeportivos.UI.Registros
 
             if (error == 1 && IdnumericUpDown.Value == 0)
             {
-                errorProvider.SetError(IdnumericUpDown, "Llenar Partido Id");
+                IderrorProvider.SetError(IdnumericUpDown, "Llenar Partido Id");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrWhiteSpace(TipoPartidocomboBox.Text))
+            /*if (error == 2 && TipoPartidocomboBox.Text == string.Empty)
             {
                 errorProvider.SetError(TipoPartidocomboBox,
                    "Debes seleccionar un Tipo de Partido");
                 paso = true;
-            }
-            if (error == 2 && string.IsNullOrWhiteSpace(NombrePartidotextBox.Text))
+            }*/
+            if (error == 3 && NombrePartidotextBox.Text == string.Empty)
             {
                 errorProvider.SetError(NombrePartidotextBox,
                    "Debes ingresar un Nombre");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrWhiteSpace(FechadateTimePicker.Text))
-            {
-                errorProvider.SetError(FechadateTimePicker,
-                   "Debes ingresar una Fecha");
-                paso = true;
-            }
-
-            if (error == 2 && string.IsNullOrWhiteSpace(LugarPartidotextBox.Text))
+            if (error == 3 && LugarPartidotextBox.Text == string.Empty)
             {
                 errorProvider.SetError(LugarPartidotextBox,
                     "Debes ingresar un Lugar");
                 paso = true;
             }
-
-            if (error == 2 && string.IsNullOrEmpty(DescripciontextBox.Text))
+            
+            if (error == 4 && CantidadtextBox.Text == string.Empty)
             {
-                errorProvider.SetError(DescripciontextBox,
-                    "Debes ingresar una Descripcion");
-                paso = true;
-            }
-            if (error == 1 && CantidadnumericUpDown.Value == 0)
-            {
-                errorProvider.SetError(CantidadnumericUpDown,
+                errorProvider.SetError(CantidadtextBox,
                     "Debes ingresar una Cantidad");
-                paso = true;
-            }
-            if (error == 2 && CantidadnumericUpDown.Value == 0)
-            {
-                errorProvider.SetError(CantidadnumericUpDown,
-                    "Debes ingresar un Precio");
-                paso = true;
-            }
-            if (PartidodataGridView.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow item in PartidodataGridView.Rows)
-                {
-                    partido.AgregarTickets(item.Cells["Descripcion"].Value.ToString(), Convert.ToInt32(item.Cells["CantDisponible"].Value), Convert.ToDecimal(item.Cells["PrecioTicket"].Value));
-                }
-            }
-            else
-            {
-                MensajeError("Error al guardar debido a que no agrego Tickets!");
                 paso = true;
             }
 
@@ -132,37 +91,53 @@ namespace TicketsDeportivos.UI.Registros
         private void LlenarCampos()
         {
             TipoPartidocomboBox.Text = partido.TipoPartidoId.ToString();
-            NombrePartidotextBox.Text = partido.Nombre.ToString();
-            FechadateTimePicker.Value = partido.Fecha;
-            LugarPartidotextBox.Text = partido.Lugar.ToString();
-            DescripciontextBox.Text = partido.Descripcion.ToString();
-            CantidadnumericUpDown.Value = partido.Cantidad ;
-            PrecionumericUpDown.Value = partido.Precio;
+            NombrePartidotextBox.Text = partido.NombrePartido.ToString();
+            FechadateTimePicker.Value = partido.FechaPartido;
+            LugarPartidotextBox.Text = partido.LugarPartido.ToString();
+            DescripcioncomboBox.Text = partido.Descripcion.ToString();
+            CantidadtextBox.Text = partido.CantidadDisponible.ToString();
+            PreciocomboBox.Text = partido.PrecioTicket.ToString();
+            TicketcomboBox.Text = partido.TicketId.ToString();
             foreach (var item in partido.Detalle)
             {
-                PartidodataGridView.Rows.Add(item.Descripcion, item.Cantidad, item.Precio);
+                PartidodataGridView.Rows.Add(item.Descripcion, item.CantidadDisponible, item.PrecioTicket);
             }
+        }
+
+        private int ToInt(object valor)
+        {
+            int retorno = 0;
+            int.TryParse(valor.ToString(), out retorno);
+            return retorno;
+
+        }
+        private decimal ToDecimal(object valor)
+        {
+            decimal retorno = 0;
+            decimal.TryParse(valor.ToString(), out retorno);
+            return retorno;
+
         }
 
         private Partido Llenaclase()
         {
-            Partido partido = new Partido();
-            if (partido.PartidoId == 0)
+            if (IdnumericUpDown.Value == 0)
             {
                 partido.PartidoId = 0;
             }
             else
             {
-                partido.PartidoId = Convert.ToInt32(partido.PartidoId);
+                partido.PartidoId = (int)IdnumericUpDown.Value;
+                partido.TipoPartidoId = Convert.ToInt32(TipoPartidocomboBox.Text);
+                partido.NombrePartido = NombrePartidotextBox.Text;
+                partido.FechaPartido = FechadateTimePicker.Value;
+                partido.LugarPartido = LugarPartidotextBox.Text;
+                partido.Descripcion = DescripcioncomboBox.Text;
+                partido.CantidadDisponible = Convert.ToInt32(CantidadtextBox.Text);
+                partido.PrecioTicket = Convert.ToInt32(PreciocomboBox.Text);
+                partido.TicketId = Convert.ToInt32(TicketcomboBox.Text);
             }
-            partido.TipoPartidoId = Convert.ToInt32(TipoPartidocomboBox.SelectedValue);
-            partido.Nombre = NombrePartidotextBox.Text;
-            partido.Fecha = FechadateTimePicker.Value;
-            partido.Lugar = LugarPartidotextBox.Text;
-            partido.Descripcion = DescripciontextBox.Text;
-            partido.Cantidad = Convert.ToInt32(CantidadnumericUpDown.Value);
-            partido.Precio = Convert.ToDecimal(PrecionumericUpDown.Value);
-
+                
             return partido;
         }
 
@@ -175,18 +150,19 @@ namespace TicketsDeportivos.UI.Registros
             else
             {
                 int id = Convert.ToInt32(IdnumericUpDown.Value);
-                Partido partido = BLL.PartidoBLL.Buscar(id);
+                Partido partido = BLL.PartidosBLL.Buscar(id);
 
                 if (partido != null)
                 {
                     IdnumericUpDown.Value = partido.PartidoId;
                     TipoPartidocomboBox.Text = partido.TipoPartidoId.ToString();
-                    NombrePartidotextBox.Text = partido.Nombre.ToString();
-                    FechadateTimePicker.Value = partido.Fecha;
-                    LugarPartidotextBox.Text = partido.Lugar.ToString();
-                    DescripciontextBox.Text = partido.Descripcion.ToString();
-                    CantidadnumericUpDown.Value = partido.Cantidad;
-                    PrecionumericUpDown.Value = partido.Precio;
+                    NombrePartidotextBox.Text = partido.NombrePartido.ToString();
+                    FechadateTimePicker.Value = partido.FechaPartido;
+                    LugarPartidotextBox.Text = partido.LugarPartido.ToString();
+                    DescripcioncomboBox.Text = partido.Descripcion.ToString();
+                    CantidadtextBox.Text = partido.CantidadDisponible.ToString();
+                    PreciocomboBox.Text = partido.PrecioTicket.ToString();
+                    TicketcomboBox.Text = partido.TicketId.ToString();
 
                 }
                 else
@@ -199,106 +175,116 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Nuevobutton_Click(object sender, EventArgs e)
         {
-            Eliminarbutton.Enabled = false;
-            errorProvider.Clear();
             Limpiar();
-            Guardarbutton.Text = "Guardar";
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
-            bool paso = false;
-            Partido partido = Llenaclase();
-
-
             if (Validar(2))
             {
-                MessageBox.Show("Favor de llenar las Casillas");
+                MessageBox.Show("Llenar Campos vacios");
+                return;
             }
-            else
+            Partido partido = Llenaclase();
+            if (IdnumericUpDown.Value == 0)
             {
-                if (IdnumericUpDown.Value == 0)
+                if (BLL.PartidosBLL.Guardar(partido))
                 {
-                    paso = BLL.PartidoBLL.Guardar(partido);
-                }
-                else
-                {
-                    var partidos = BLL.PartidoBLL.Buscar(Convert.ToInt32(IdnumericUpDown.Value));
-
-                    if (partidos != null)
-                    {
-                        paso = BLL.PartidoBLL.Modificar(partido);
-                    }
-                }
-                Limpiar();
-                errorProvider.Clear();
-                if (paso)
-                {
-                    MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No pudo Guardar!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void Eliminarbutton_Click(object sender, EventArgs e)
-        {
-            if (Validar(1))
-            {
-                MessageBox.Show("Favor de llenar casilla para poder Eliminar");
-            }
-            else
-            {
-                int id = Convert.ToInt32(IdnumericUpDown.Value);
-
-                if (BLL.PartidoBLL.Eliminar(id))
-                {
-                    MessageBox.Show("Eliminado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Guardado!!");
+                    
                     Limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("No Pudo Eliminar!", "Fallido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo Guardar!!");
                 }
-                errorProvider.Clear();
             }
+            else
+            {
+                var result = MessageBox.Show("Seguro de Modificar?", "+Ventas",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                if (result == DialogResult.Yes)
+                {
+                    if (BLL.PartidosBLL.Modificar(Llenaclase()))
+                    {
+                        MessageBox.Show("Modificado!!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo Guardar!!");
+                    }
+                }
+            }
         }
 
         private void PartidosForm_Load(object sender, EventArgs e)
         {
+            TicketcomboBox.Items.Clear();
+            foreach (var item in BLL.TicketBLL.GetList(x => true))
+            {
+                TicketcomboBox.Items.Add(item.TicketId);
+            }
+            DescripcioncomboBox.Items.Clear();
+            foreach (var item in BLL.TicketBLL.GetList(x => true))
+            {
+                DescripcioncomboBox.Items.Add(item.Descripcion);
+            }
+            PreciocomboBox.Items.Clear();
+            foreach (var item in BLL.TicketBLL.GetList(x => true))
+            {
+                PreciocomboBox.Items.Add(item.PrecioTicket);
+            }
 
+            TipoPartidocomboBox.Items.Clear();
+            foreach (var item in BLL.TipoPartidosBLL.GetList(x => true))
+            {
+                TipoPartidocomboBox.Items.Add(item.Descripcion);
+            }
         }
+
         private void CantidadnumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (Validar(2))
+            if (Validar(4))
             {
                 MessageBox.Show("Debe Buscar Antes de poner una cantidad");
-                CantidadnumericUpDown.Value = 0;
+                CantidadtextBox.Text = string.Empty;
                 return;
             }
         }
-        
+
         private void Agregarbutton_Click_1(object sender, EventArgs e)
         {
-
-            int cant = 0;
-            int pre = 0;
-            int.TryParse(CantidadnumericUpDown.Text, out cant);
-            int.TryParse(PrecionumericUpDown.Text, out pre);
-
-            if (!DescripciontextBox.Text.Equals("") && !CantidadnumericUpDown.Text.Equals("") && !PrecionumericUpDown.Text.Equals(""))
+            List<PartidoDetalle> partidoDetalles = new List<PartidoDetalle>();
+            if (Validar(2))
             {
-                PartidodataGridView.Rows.Add(DescripciontextBox.Text, cant, pre);
-                DescripciontextBox.Clear();
-                CantidadnumericUpDown.Value=0;
-                PrecionumericUpDown.Value=0;
+                MessageBox.Show("Llene los Campos", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (PreciocomboBox.Text == string.Empty || TicketcomboBox.Text == string.Empty ||DescripcioncomboBox.Text == string.Empty)
+            {
+                partido.Detalle.Add(new PartidoDetalle
+                        (Convert.ToInt32(TicketcomboBox.Text),
+                        Convert.ToInt32(TicketcomboBox.Text),
+                        DescripcioncomboBox.Text,
+                        Convert.ToInt32(CantidadtextBox.Text),
+                        Convert.ToInt32(PreciocomboBox.Text)
+
+                    ));
             }
             else
             {
-                MensajeError("Error al agregar debido a que hay campos vacios!!!");
+                partido.Detalle.Add(new PartidoDetalle
+                        (Convert.ToInt32(TicketcomboBox.Text),
+                        Convert.ToInt32(TicketcomboBox.Text),
+                        DescripcioncomboBox.Text,
+                        Convert.ToInt32(CantidadtextBox.Text),
+                        Convert.ToInt32(PreciocomboBox.Text)
+
+                    ));
+
+                //Cargar el detalle al Grid
+                PartidodataGridView.DataSource = null;
+                PartidodataGridView.DataSource = partido.Detalle;
             }
         }
         
@@ -320,23 +306,7 @@ namespace TicketsDeportivos.UI.Registros
             }
         }
 
-        private void DescripciontextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 32) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(DescripciontextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                CantidadnumericUpDown.Focus();
-            }
-        }
+        
         
         private void NombrePartidotextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
@@ -356,7 +326,6 @@ namespace TicketsDeportivos.UI.Registros
             }
         }
 
-        
         private void LugarPartidotextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 32) || (e.KeyChar == 13))
@@ -371,44 +340,64 @@ namespace TicketsDeportivos.UI.Registros
             }
             if (e.KeyChar == 13)
             {
-                DescripciontextBox.Focus();
+                DescripcioncomboBox.Focus();
             }
         }
 
-        private void CantidadnumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void Eliminarbutton_Click(object sender, EventArgs e)
         {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
+            Limpiar();
+            if (Validar(1))
             {
-                e.Handled = false;
-                errorProvider.Clear();
+                MessageBox.Show("Llenar campos Vacios");
+                return;
             }
-            else
+            var result = MessageBox.Show("Seguro de  Eliminar?", "+Ventas",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                e.Handled = true;
-                errorProvider.SetError(CantidadnumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                PrecionumericUpDown.Focus();
+                if (BLL.PartidosBLL.Eliminar(Convert.ToInt32(IdnumericUpDown.Value)))
+                {
+                    MessageBox.Show("Eliminado");
+                    IdnumericUpDown.Value = 0;
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar");
+                }
             }
         }
 
-        private void PrecionumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        private void Borrarbutton_Click(object sender, EventArgs e)
         {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
+            var result = MessageBox.Show("Desea Eliminar el detalle seleccionado?", "+Partido",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                e.Handled = false;
-                errorProvider.Clear();
+                if (RowSelected >= 0)
+                {
+                    PartidoDetalle partidoDetalle = partido.Detalle.ElementAt(RowSelected);
+                    Detalle.Add(new PartidoDetalle(partido.PartidoId, partido.TicketId, partido.Descripcion, partido.CantidadDisponible , partido.PrecioTicket));
+                    partido.Detalle.RemoveAt(RowSelected);
+                    PartidodataGridView.DataSource = null;
+                    PartidodataGridView.DataSource = partido.Detalle;
+                    RowSelected = -1;
+                    MessageBox.Show("Eliminado!");
+                }
             }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(PrecionumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                Agregarbutton.Focus();
-            }
+        }
+
+        private void Titulolabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TipoPartidocomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

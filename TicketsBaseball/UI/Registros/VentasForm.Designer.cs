@@ -39,7 +39,6 @@
             this.Eventolabel = new System.Windows.Forms.Label();
             this.VentaIdlabel = new System.Windows.Forms.Label();
             this.Imprimirbutton = new System.Windows.Forms.Button();
-            this.Agregarbutton = new System.Windows.Forms.Button();
             this.DescripcionrichTextBox = new System.Windows.Forms.RichTextBox();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.UsuarioscomboBox = new System.Windows.Forms.ComboBox();
@@ -50,15 +49,11 @@
             this.Nuevobutton = new System.Windows.Forms.Button();
             this.Guardarbutton = new System.Windows.Forms.Button();
             this.Eliminarbutton = new System.Windows.Forms.Button();
-            this.VentadataGridView = new System.Windows.Forms.DataGridView();
-            this.EventoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.IdnumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CantidanumericUpDown = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.VentadataGridView)).BeginInit();
+            this.CantidadcomboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CantidanumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // Titulolabel
@@ -77,7 +72,7 @@
             // 
             this.Totallabel.AutoSize = true;
             this.Totallabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Totallabel.Location = new System.Drawing.Point(14, 441);
+            this.Totallabel.Location = new System.Drawing.Point(15, 277);
             this.Totallabel.Name = "Totallabel";
             this.Totallabel.Size = new System.Drawing.Size(42, 14);
             this.Totallabel.TabIndex = 34;
@@ -159,7 +154,7 @@
             this.Imprimirbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Imprimirbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Imprimirbutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Imprimirbutton.Location = new System.Drawing.Point(496, 474);
+            this.Imprimirbutton.Location = new System.Drawing.Point(497, 310);
             this.Imprimirbutton.Name = "Imprimirbutton";
             this.Imprimirbutton.Size = new System.Drawing.Size(75, 46);
             this.Imprimirbutton.TabIndex = 46;
@@ -167,19 +162,6 @@
             this.Imprimirbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Imprimirbutton.UseVisualStyleBackColor = true;
             this.Imprimirbutton.Click += new System.EventHandler(this.Imprimirbutton_Click_1);
-            // 
-            // Agregarbutton
-            // 
-            this.Agregarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Agregarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Agregarbutton.Location = new System.Drawing.Point(496, 257);
-            this.Agregarbutton.Name = "Agregarbutton";
-            this.Agregarbutton.Size = new System.Drawing.Size(75, 44);
-            this.Agregarbutton.TabIndex = 43;
-            this.Agregarbutton.Text = "Agregar";
-            this.Agregarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Agregarbutton.UseVisualStyleBackColor = true;
-            this.Agregarbutton.Click += new System.EventHandler(this.Agregarbutton_Click);
             // 
             // DescripcionrichTextBox
             // 
@@ -211,12 +193,13 @@
             // 
             // TotaltextBox
             // 
-            this.TotaltextBox.Location = new System.Drawing.Point(62, 438);
+            this.TotaltextBox.Location = new System.Drawing.Point(63, 274);
             this.TotaltextBox.MaxLength = 12;
             this.TotaltextBox.Name = "TotaltextBox";
             this.TotaltextBox.ReadOnly = true;
             this.TotaltextBox.Size = new System.Drawing.Size(227, 20);
             this.TotaltextBox.TabIndex = 44;
+            this.TotaltextBox.TextChanged += new System.EventHandler(this.TotaltextBox_TextChanged);
             // 
             // TicketcomboBox
             // 
@@ -224,7 +207,7 @@
             this.TicketcomboBox.FormattingEnabled = true;
             this.TicketcomboBox.Location = new System.Drawing.Point(390, 73);
             this.TicketcomboBox.Name = "TicketcomboBox";
-            this.TicketcomboBox.Size = new System.Drawing.Size(184, 21);
+            this.TicketcomboBox.Size = new System.Drawing.Size(116, 21);
             this.TicketcomboBox.TabIndex = 40;
             // 
             // PartidocomboBox
@@ -257,7 +240,7 @@
             this.Nuevobutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Nuevobutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Nuevobutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Nuevobutton.Location = new System.Drawing.Point(13, 475);
+            this.Nuevobutton.Location = new System.Drawing.Point(14, 311);
             this.Nuevobutton.Name = "Nuevobutton";
             this.Nuevobutton.Size = new System.Drawing.Size(75, 45);
             this.Nuevobutton.TabIndex = 24;
@@ -272,7 +255,7 @@
             this.Guardarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Guardarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Guardarbutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Guardarbutton.Location = new System.Drawing.Point(115, 475);
+            this.Guardarbutton.Location = new System.Drawing.Point(116, 311);
             this.Guardarbutton.Name = "Guardarbutton";
             this.Guardarbutton.Size = new System.Drawing.Size(75, 46);
             this.Guardarbutton.TabIndex = 45;
@@ -287,7 +270,7 @@
             this.Eliminarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Eliminarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Eliminarbutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Eliminarbutton.Location = new System.Drawing.Point(214, 475);
+            this.Eliminarbutton.Location = new System.Drawing.Point(215, 311);
             this.Eliminarbutton.Name = "Eliminarbutton";
             this.Eliminarbutton.Size = new System.Drawing.Size(75, 46);
             this.Eliminarbutton.TabIndex = 26;
@@ -295,27 +278,6 @@
             this.Eliminarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Eliminarbutton.UseVisualStyleBackColor = true;
             this.Eliminarbutton.Click += new System.EventHandler(this.Eliminarbutton_Click);
-            // 
-            // VentadataGridView
-            // 
-            this.VentadataGridView.AllowUserToAddRows = false;
-            this.VentadataGridView.AllowUserToDeleteRows = false;
-            this.VentadataGridView.AllowUserToOrderColumns = true;
-            this.VentadataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.VentadataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.EventoId});
-            this.VentadataGridView.Location = new System.Drawing.Point(12, 307);
-            this.VentadataGridView.Name = "VentadataGridView";
-            this.VentadataGridView.ReadOnly = true;
-            this.VentadataGridView.RowHeadersVisible = false;
-            this.VentadataGridView.Size = new System.Drawing.Size(559, 125);
-            this.VentadataGridView.TabIndex = 30;
-            // 
-            // EventoId
-            // 
-            this.EventoId.HeaderText = "EventoId";
-            this.EventoId.Name = "EventoId";
-            this.EventoId.ReadOnly = true;
             // 
             // errorProvider
             // 
@@ -329,20 +291,21 @@
             this.IdnumericUpDown.TabIndex = 48;
             this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
             // 
-            // CantidanumericUpDown
+            // CantidadcomboBox
             // 
-            this.CantidanumericUpDown.Location = new System.Drawing.Point(390, 118);
-            this.CantidanumericUpDown.Name = "CantidanumericUpDown";
-            this.CantidanumericUpDown.Size = new System.Drawing.Size(184, 20);
-            this.CantidanumericUpDown.TabIndex = 49;
-            this.CantidanumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidanumericUpDown_KeyPress);
+            this.CantidadcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CantidadcomboBox.FormattingEnabled = true;
+            this.CantidadcomboBox.Location = new System.Drawing.Point(390, 117);
+            this.CantidadcomboBox.Name = "CantidadcomboBox";
+            this.CantidadcomboBox.Size = new System.Drawing.Size(116, 21);
+            this.CantidadcomboBox.TabIndex = 53;
             // 
             // VentasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 533);
-            this.Controls.Add(this.CantidanumericUpDown);
+            this.ClientSize = new System.Drawing.Size(584, 370);
+            this.Controls.Add(this.CantidadcomboBox);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);
             this.Controls.Add(this.Totallabel);
@@ -354,7 +317,6 @@
             this.Controls.Add(this.Eventolabel);
             this.Controls.Add(this.VentaIdlabel);
             this.Controls.Add(this.Imprimirbutton);
-            this.Controls.Add(this.Agregarbutton);
             this.Controls.Add(this.DescripcionrichTextBox);
             this.Controls.Add(this.FechadateTimePicker);
             this.Controls.Add(this.UsuarioscomboBox);
@@ -365,13 +327,11 @@
             this.Controls.Add(this.Nuevobutton);
             this.Controls.Add(this.Guardarbutton);
             this.Controls.Add(this.Eliminarbutton);
-            this.Controls.Add(this.VentadataGridView);
             this.Name = "VentasForm";
             this.Text = "Registro de Ventas";
-            ((System.ComponentModel.ISupportInitialize)(this.VentadataGridView)).EndInit();
+            this.Load += new System.EventHandler(this.VentasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CantidanumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,7 +348,6 @@
         private System.Windows.Forms.Label Eventolabel;
         private System.Windows.Forms.Label VentaIdlabel;
         private System.Windows.Forms.Button Imprimirbutton;
-        private System.Windows.Forms.Button Agregarbutton;
         private System.Windows.Forms.RichTextBox DescripcionrichTextBox;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker;
         private System.Windows.Forms.ComboBox UsuarioscomboBox;
@@ -399,10 +358,8 @@
         private System.Windows.Forms.Button Nuevobutton;
         private System.Windows.Forms.Button Guardarbutton;
         private System.Windows.Forms.Button Eliminarbutton;
-        private System.Windows.Forms.DataGridView VentadataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EventoId;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.NumericUpDown IdnumericUpDown;
-        private System.Windows.Forms.NumericUpDown CantidanumericUpDown;
+        private System.Windows.Forms.ComboBox CantidadcomboBox;
     }
 }

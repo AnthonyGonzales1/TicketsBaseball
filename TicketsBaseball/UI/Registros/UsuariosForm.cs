@@ -19,7 +19,7 @@ namespace TicketsDeportivos.UI.Registros
         {
             InitializeComponent();
         }
-        private Usuario LlenaClase()
+        private Usuario Llenaclase()
         {
             Usuario usuario = new Usuario();
             if (usuario.UsuarioId == 0)
@@ -75,54 +75,54 @@ namespace TicketsDeportivos.UI.Registros
                 errorProvider.SetError(IdnumericUpDown, "Llenar Usuario Id");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrWhiteSpace(NombrestextBox.Text))
+            if (error == 2 && NombrestextBox.Text == string.Empty)
             {
                 errorProvider.SetError(NombrestextBox,
-                   "Debes seleccionar un Nombre");
+                   "Debes ingresar un Nombre");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrWhiteSpace(ApellidostextBox.Text))
+            if (error == 2 && ApellidostextBox.Text == string.Empty)
             {
                 errorProvider.SetError(ApellidostextBox,
                    "Debes ingresar un Apellido");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text))
+            if (error == 2 && TelefonomaskedTextBox.Text == string.Empty)
             {
                 errorProvider.SetError(TelefonomaskedTextBox,
                    "Debes ingresar un Numero de Telefono");
                 paso = true;
             }
 
-            if (error == 2 && string.IsNullOrWhiteSpace(EmailtextBox.Text))
+            if (error == 2 && EmailtextBox.Text == string.Empty)
             {
                 errorProvider.SetError(EmailtextBox,
                     "Debes ingresar un Email");
                 paso = true;
             }
 
-            if (error == 2 && string.IsNullOrEmpty(DirecciontextBox.Text))
+            if (error == 2 && DirecciontextBox.Text == string.Empty)
             {
                 errorProvider.SetError(DirecciontextBox,
                     "Debes ingresar una Direccion");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrEmpty(NombreUsuariotextBox.Text))
+            if (error == 2 && NombreUsuariotextBox.Text == string.Empty)
             {
                 errorProvider.SetError(NombreUsuariotextBox,
                     "Debes ingresar un Nombre de Usuario");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrEmpty(ContrasenatextBox.Text))
+            if (error == 2 && ContrasenatextBox.Text == string.Empty)
             {
                 errorProvider.SetError(ContrasenatextBox,
                     "Debes ingresar una Contrasena");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrEmpty(ConfirmarContrasenatextBox.Text))
+            if (error == 2 && ConfirmarContrasenatextBox.Text == string.Empty)
             {
                 errorProvider.SetError(ConfirmarContrasenatextBox,
-                    "Las Contrasenas deben sr identicas");
+                    "Las Contrasenas deben ser identicas");
                 paso = true;
             }
             if (ConfirmarContrasenatextBox.Text.Length > 0)
@@ -135,7 +135,7 @@ namespace TicketsDeportivos.UI.Registros
             }
             else
             {
-                usuario.Activo = 0;
+                usuario.Activo.ToString();
             }
 
             if (FotopictureBox.ImageLocation != null)
@@ -203,53 +203,34 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Guardarbutton_Click_1(object sender, EventArgs e)
         {
-            bool paso = false;
-            Usuario usuario = LlenaClase();
-
-            if (ActivocheckBox.Checked == true)
+            Usuario usuario = Llenaclase();
+            if (IdnumericUpDown.Value == 0)
             {
-                usuario.Activo = 1;
-            }
-            else
-            {
-                usuario.Activo = 0;
-            }
-            if (ContrasenatextBox.Text.Trim() != ConfirmarContrasenatextBox.Text.Trim())
-            {
-                errorProvider.SetError(ContrasenatextBox, "Las contraseña no son identicas");
-                errorProvider.SetError(ConfirmarContrasenatextBox, "Las contraseña no son identicas");
-                ConfirmarContrasenatextBox.Clear();
-            }
-            else
-            {
-                if (Validar(2))
+                if (BLL.UsuarioBLL.Guardar(usuario))
                 {
-                    MessageBox.Show("Favor de Llenar las Casillas");
+                    MessageBox.Show("Guardado!!");
+                    IdnumericUpDown.Value = 0;
+                    Limpiar();
                 }
                 else
                 {
-                    if (IdnumericUpDown.Value == 0)
-                    {
-                        paso = BLL.UsuarioBLL.Guardar(usuario);
-                    }
-                    else
-                    {
-                        var usuarios = BLL.UsuarioBLL.Buscar(Convert.ToInt32(IdnumericUpDown.Value));
+                    MessageBox.Show("No se pudo Guardar!!");
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show("Seguro de Modificar?", "+Usuarios",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (usuarios != null)
-                        {
-                            paso = BLL.UsuarioBLL.Modificar(usuario);
-                        }
-                    }
-                    Limpiar();
-                    errorProvider.Clear();
-                    if (paso)
+                if (result == DialogResult.Yes)
+                {
+                    if (BLL.UsuarioBLL.Modificar(Llenaclase()))
                     {
-                        MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Modificado!!");
                     }
                     else
                     {
-                        MessageBox.Show("No pudo Guardar!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No se pudo modificar!!");
                     }
                 }
             }
@@ -268,6 +249,8 @@ namespace TicketsDeportivos.UI.Registros
                 if (BLL.UsuarioBLL.Eliminar(id))
                 {
                     MessageBox.Show("Eliminado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    IdnumericUpDown.Value = 0;
                     Limpiar();
                 }
                 else
@@ -280,10 +263,7 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Nuevobutton_Click_1(object sender, EventArgs e)
         {
-            Eliminarbutton.Enabled = false;
-            errorProvider.Clear();
             Limpiar();
-            Guardarbutton.Text = "Guardar";
         }
 
         private void Fotobutton_Click_1(object sender, EventArgs e)
@@ -420,12 +400,7 @@ namespace TicketsDeportivos.UI.Registros
                 errorProvider.Clear();
             }
         }
-
-        private void UsuariosForm_Load_1(object sender, EventArgs e)
-        {
-            Eliminarbutton.Enabled = false;
-        }
-
+        
         private void ConfirmarContrasenatextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))

@@ -21,6 +21,7 @@ namespace TicketsDeportivos
         Expression<Func<Partido, bool>> filtrar1 = x => true;
         Expression<Func<TipoPartido, bool>> filtrar2 = x => true;
         Expression<Func<Usuario, bool>> filtrar3 = x => true;
+        Expression<Func<Ticket, bool>> filtrar4 = x => true;
         public PrincipalForm()
         {
             InitializeComponent();
@@ -86,7 +87,7 @@ namespace TicketsDeportivos
 
         private void ReportePartidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PartidoReviewer partidoReviewer = new PartidoReviewer(BLL.PartidoBLL.GetList(filtrar1));
+            PartidoReviewer partidoReviewer = new PartidoReviewer(BLL.PartidosBLL.GetList(filtrar1));
             {
                 partidoReviewer.Show();
             }
@@ -116,6 +117,34 @@ namespace TicketsDeportivos
         {
             Help help = new Help();
             help.Show();
+        }
+
+        private void ticketsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TicketForm ticket =new TicketForm();
+            ticket.Show();
+        }
+
+        private void ticketsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            TicketsConsult ticketsConsult = new TicketsConsult();
+            ticketsConsult.Show();
+        }
+
+        private void ticketsToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            TicketsReviewer ticketsReviewer = new TicketsReviewer(BLL.TicketBLL.GetList(filtrar4));
+            {
+                ticketsReviewer.Show();
+            }
+        }
+
+        private void reciboDeVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VentasReciboReviewer ventasReciboReviewer=new VentasReciboReviewer(BLL.VentasBLL.GetList(filtrar));
+            {
+                ventasReciboReviewer.Show();
+            }
         }
     }
 }

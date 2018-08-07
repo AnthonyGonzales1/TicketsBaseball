@@ -12,24 +12,26 @@ namespace TicketsDeportivos.Entidades
         [Key]
         public int PartidoId { get; set; }
         public int TipoPartidoId { get; set; }
-        public string Nombre { get; set; }
-        public DateTime Fecha { get; set; }
-        public string Lugar { get; set; }
+        public int TicketId { get; set; }
+        public string NombrePartido { get; set; }
+        public DateTime FechaPartido { get; set; }
+        public string LugarPartido { get; set; }
         public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
-        public decimal Precio { get; set; }
+        public int CantidadDisponible { get; set; }
+        public int PrecioTicket { get; set; }
         public List<PartidoDetalle> Detalle { get; set; }
 
         public Partido()
         {
             this.PartidoId = 0;
             this.TipoPartidoId = 0;
-            this.Nombre = string.Empty;
-            this.Fecha =DateTime.Now;
-            this.Lugar = string.Empty;
+            this.TicketId = 0;
+            this.NombrePartido = string.Empty;
+            this.FechaPartido =DateTime.Now;
+            this.LugarPartido = string.Empty;
             this.Descripcion = string.Empty;
-            this.Cantidad = 0;
-            this.Precio = 0;
+            this.CantidadDisponible = 0;
+            this.PrecioTicket = 0;
 
             this.Detalle = new List<PartidoDetalle>();
         }
@@ -37,11 +39,6 @@ namespace TicketsDeportivos.Entidades
         public Partido(int partidoid)
         {
             this.PartidoId = partidoid;
-        }
-
-        public void AgregarTickets(string descripcion, int cantidad, decimal precio)
-        {
-            this.Detalle.Add(new PartidoDetalle(descripcion, cantidad, precio));
         }
     }
 }

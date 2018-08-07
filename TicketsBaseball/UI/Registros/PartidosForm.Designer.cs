@@ -36,11 +36,9 @@
             this.PartidoIdlabel = new System.Windows.Forms.Label();
             this.LugarPartidotextBox = new System.Windows.Forms.TextBox();
             this.NombrePartidotextBox = new System.Windows.Forms.TextBox();
-            this.DescripciontextBox = new System.Windows.Forms.TextBox();
             this.TipoPartidocomboBox = new System.Windows.Forms.ComboBox();
             this.Buscarbutton = new System.Windows.Forms.Button();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.Eliminarbutton = new System.Windows.Forms.Button();
             this.Guardarbutton = new System.Windows.Forms.Button();
             this.Nuevobutton = new System.Windows.Forms.Button();
             this.Agregarbutton = new System.Windows.Forms.Button();
@@ -50,16 +48,18 @@
             this.NombrePartidolabel = new System.Windows.Forms.Label();
             this.TipoIdlabel = new System.Windows.Forms.Label();
             this.IdnumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CantidadnumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.PrecionumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.Eliminarbutton = new System.Windows.Forms.Button();
+            this.Borrarbutton = new System.Windows.Forms.Button();
+            this.IderrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.PartidodataGridView = new System.Windows.Forms.DataGridView();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PreciocomboBox = new System.Windows.Forms.ComboBox();
+            this.DescripcioncomboBox = new System.Windows.Forms.ComboBox();
+            this.TicketcomboBox = new System.Windows.Forms.ComboBox();
+            this.CantidadtextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PrecionumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IderrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +74,7 @@
             this.Titulolabel.Size = new System.Drawing.Size(225, 25);
             this.Titulolabel.TabIndex = 45;
             this.Titulolabel.Text = "Registro de Partidos";
+            this.Titulolabel.Click += new System.EventHandler(this.Titulolabel_Click);
             // 
             // Preciolabel
             // 
@@ -89,7 +90,7 @@
             // 
             this.Cantidadlabel.AutoSize = true;
             this.Cantidadlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cantidadlabel.Location = new System.Drawing.Point(332, 118);
+            this.Cantidadlabel.Location = new System.Drawing.Point(332, 137);
             this.Cantidadlabel.Name = "Cantidadlabel";
             this.Cantidadlabel.Size = new System.Drawing.Size(121, 13);
             this.Cantidadlabel.TabIndex = 33;
@@ -99,7 +100,7 @@
             // 
             this.Descripcionlabel.AutoSize = true;
             this.Descripcionlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Descripcionlabel.Location = new System.Drawing.Point(377, 73);
+            this.Descripcionlabel.Location = new System.Drawing.Point(378, 102);
             this.Descripcionlabel.Name = "Descripcionlabel";
             this.Descripcionlabel.Size = new System.Drawing.Size(75, 13);
             this.Descripcionlabel.TabIndex = 32;
@@ -133,15 +134,6 @@
             this.NombrePartidotextBox.TabIndex = 37;
             this.NombrePartidotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombrePartidotextBox_KeyPress);
             // 
-            // DescripciontextBox
-            // 
-            this.DescripciontextBox.Location = new System.Drawing.Point(458, 73);
-            this.DescripciontextBox.MaxLength = 12;
-            this.DescripciontextBox.Name = "DescripciontextBox";
-            this.DescripciontextBox.Size = new System.Drawing.Size(163, 20);
-            this.DescripciontextBox.TabIndex = 40;
-            this.DescripciontextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescripciontextBox_KeyPress);
-            // 
             // TipoPartidocomboBox
             // 
             this.TipoPartidocomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -150,6 +142,7 @@
             this.TipoPartidocomboBox.Name = "TipoPartidocomboBox";
             this.TipoPartidocomboBox.Size = new System.Drawing.Size(154, 21);
             this.TipoPartidocomboBox.TabIndex = 36;
+            this.TipoPartidocomboBox.SelectedIndexChanged += new System.EventHandler(this.TipoPartidocomboBox_SelectedIndexChanged);
             // 
             // Buscarbutton
             // 
@@ -174,19 +167,6 @@
             this.FechadateTimePicker.Name = "FechadateTimePicker";
             this.FechadateTimePicker.Size = new System.Drawing.Size(154, 20);
             this.FechadateTimePicker.TabIndex = 38;
-            // 
-            // Eliminarbutton
-            // 
-            this.Eliminarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Eliminarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Eliminarbutton.Location = new System.Drawing.Point(209, 327);
-            this.Eliminarbutton.Name = "Eliminarbutton";
-            this.Eliminarbutton.Size = new System.Drawing.Size(75, 45);
-            this.Eliminarbutton.TabIndex = 25;
-            this.Eliminarbutton.Text = "Eliminar";
-            this.Eliminarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Eliminarbutton.UseVisualStyleBackColor = true;
-            this.Eliminarbutton.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // Guardarbutton
             // 
@@ -279,64 +259,102 @@
             this.IdnumericUpDown.TabIndex = 46;
             this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
             // 
-            // CantidadnumericUpDown
+            // Eliminarbutton
             // 
-            this.CantidadnumericUpDown.Location = new System.Drawing.Point(459, 116);
-            this.CantidadnumericUpDown.Name = "CantidadnumericUpDown";
-            this.CantidadnumericUpDown.Size = new System.Drawing.Size(162, 20);
-            this.CantidadnumericUpDown.TabIndex = 47;
-            this.CantidadnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadnumericUpDown_KeyPress);
+            this.Eliminarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Eliminarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Eliminarbutton.Location = new System.Drawing.Point(209, 327);
+            this.Eliminarbutton.Name = "Eliminarbutton";
+            this.Eliminarbutton.Size = new System.Drawing.Size(75, 45);
+            this.Eliminarbutton.TabIndex = 50;
+            this.Eliminarbutton.Text = "Eliminar";
+            this.Eliminarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Eliminarbutton.UseVisualStyleBackColor = true;
+            this.Eliminarbutton.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
-            // PrecionumericUpDown
+            // Borrarbutton
             // 
-            this.PrecionumericUpDown.Location = new System.Drawing.Point(458, 162);
-            this.PrecionumericUpDown.Name = "PrecionumericUpDown";
-            this.PrecionumericUpDown.Size = new System.Drawing.Size(162, 20);
-            this.PrecionumericUpDown.TabIndex = 48;
-            this.PrecionumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrecionumericUpDown_KeyPress);
+            this.Borrarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Borrarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Borrarbutton.Location = new System.Drawing.Point(465, 191);
+            this.Borrarbutton.Name = "Borrarbutton";
+            this.Borrarbutton.Size = new System.Drawing.Size(75, 47);
+            this.Borrarbutton.TabIndex = 51;
+            this.Borrarbutton.Text = "Borrar";
+            this.Borrarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Borrarbutton.UseVisualStyleBackColor = true;
+            this.Borrarbutton.Click += new System.EventHandler(this.Borrarbutton_Click);
+            // 
+            // IderrorProvider
+            // 
+            this.IderrorProvider.ContainerControl = this;
             // 
             // PartidodataGridView
             // 
-            this.PartidodataGridView.AllowUserToAddRows = false;
-            this.PartidodataGridView.AllowUserToOrderColumns = true;
             this.PartidodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartidodataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Descripcion,
-            this.CantDisponible,
-            this.PrecioTicket});
-            this.PartidodataGridView.Location = new System.Drawing.Point(335, 247);
+            this.PartidodataGridView.Location = new System.Drawing.Point(335, 244);
             this.PartidodataGridView.Name = "PartidodataGridView";
-            this.PartidodataGridView.ReadOnly = true;
-            this.PartidodataGridView.RowHeadersVisible = false;
-            this.PartidodataGridView.Size = new System.Drawing.Size(298, 128);
-            this.PartidodataGridView.TabIndex = 49;
+            this.PartidodataGridView.Size = new System.Drawing.Size(295, 131);
+            this.PartidodataGridView.TabIndex = 52;
             // 
-            // Descripcion
+            // label1
             // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(392, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "Ticket ID:";
             // 
-            // CantDisponible
+            // PreciocomboBox
             // 
-            this.CantDisponible.HeaderText = "CantDisponible";
-            this.CantDisponible.Name = "CantDisponible";
-            this.CantDisponible.ReadOnly = true;
+            this.PreciocomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PreciocomboBox.FormattingEnabled = true;
+            this.PreciocomboBox.Location = new System.Drawing.Point(459, 165);
+            this.PreciocomboBox.Name = "PreciocomboBox";
+            this.PreciocomboBox.Size = new System.Drawing.Size(121, 21);
+            this.PreciocomboBox.TabIndex = 58;
             // 
-            // PrecioTicket
+            // DescripcioncomboBox
             // 
-            this.PrecioTicket.HeaderText = "PrecioTicket";
-            this.PrecioTicket.Name = "PrecioTicket";
-            this.PrecioTicket.ReadOnly = true;
+            this.DescripcioncomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DescripcioncomboBox.FormattingEnabled = true;
+            this.DescripcioncomboBox.Location = new System.Drawing.Point(459, 99);
+            this.DescripcioncomboBox.Name = "DescripcioncomboBox";
+            this.DescripcioncomboBox.Size = new System.Drawing.Size(121, 21);
+            this.DescripcioncomboBox.TabIndex = 59;
+            // 
+            // TicketcomboBox
+            // 
+            this.TicketcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TicketcomboBox.FormattingEnabled = true;
+            this.TicketcomboBox.Location = new System.Drawing.Point(459, 66);
+            this.TicketcomboBox.Name = "TicketcomboBox";
+            this.TicketcomboBox.Size = new System.Drawing.Size(121, 21);
+            this.TicketcomboBox.TabIndex = 60;
+            // 
+            // CantidadtextBox
+            // 
+            this.CantidadtextBox.Location = new System.Drawing.Point(459, 134);
+            this.CantidadtextBox.MaxLength = 26;
+            this.CantidadtextBox.Name = "CantidadtextBox";
+            this.CantidadtextBox.Size = new System.Drawing.Size(121, 20);
+            this.CantidadtextBox.TabIndex = 61;
             // 
             // PartidosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 387);
+            this.Controls.Add(this.CantidadtextBox);
+            this.Controls.Add(this.TicketcomboBox);
+            this.Controls.Add(this.DescripcioncomboBox);
+            this.Controls.Add(this.PreciocomboBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.PartidodataGridView);
-            this.Controls.Add(this.PrecionumericUpDown);
-            this.Controls.Add(this.CantidadnumericUpDown);
+            this.Controls.Add(this.Borrarbutton);
+            this.Controls.Add(this.Eliminarbutton);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);
             this.Controls.Add(this.Preciolabel);
@@ -349,11 +367,9 @@
             this.Controls.Add(this.PartidoIdlabel);
             this.Controls.Add(this.LugarPartidotextBox);
             this.Controls.Add(this.NombrePartidotextBox);
-            this.Controls.Add(this.DescripciontextBox);
             this.Controls.Add(this.TipoPartidocomboBox);
             this.Controls.Add(this.Buscarbutton);
             this.Controls.Add(this.FechadateTimePicker);
-            this.Controls.Add(this.Eliminarbutton);
             this.Controls.Add(this.Guardarbutton);
             this.Controls.Add(this.Nuevobutton);
             this.Controls.Add(this.Agregarbutton);
@@ -362,8 +378,7 @@
             this.Load += new System.EventHandler(this.PartidosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PrecionumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IderrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartidodataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -379,11 +394,9 @@
         private System.Windows.Forms.Label PartidoIdlabel;
         private System.Windows.Forms.TextBox LugarPartidotextBox;
         private System.Windows.Forms.TextBox NombrePartidotextBox;
-        private System.Windows.Forms.TextBox DescripciontextBox;
         private System.Windows.Forms.ComboBox TipoPartidocomboBox;
         private System.Windows.Forms.Button Buscarbutton;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker;
-        private System.Windows.Forms.Button Eliminarbutton;
         private System.Windows.Forms.Button Guardarbutton;
         private System.Windows.Forms.Button Nuevobutton;
         private System.Windows.Forms.Button Agregarbutton;
@@ -393,11 +406,14 @@
         private System.Windows.Forms.Label NombrePartidolabel;
         private System.Windows.Forms.Label TipoIdlabel;
         private System.Windows.Forms.NumericUpDown IdnumericUpDown;
-        private System.Windows.Forms.NumericUpDown CantidadnumericUpDown;
-        private System.Windows.Forms.NumericUpDown PrecionumericUpDown;
+        private System.Windows.Forms.Button Eliminarbutton;
+        private System.Windows.Forms.Button Borrarbutton;
+        private System.Windows.Forms.ErrorProvider IderrorProvider;
         private System.Windows.Forms.DataGridView PartidodataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CantDisponible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTicket;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox TicketcomboBox;
+        private System.Windows.Forms.ComboBox DescripcioncomboBox;
+        private System.Windows.Forms.ComboBox PreciocomboBox;
+        private System.Windows.Forms.TextBox CantidadtextBox;
     }
 }

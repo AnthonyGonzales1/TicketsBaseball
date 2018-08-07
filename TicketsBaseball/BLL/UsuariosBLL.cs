@@ -11,89 +11,76 @@ namespace TicketsDeportivos.BLL
 {
     public class UsuarioBLL
     {
-        private static Usuario usuario = new Usuario();
         public static bool Guardar(Usuario usuario)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
-
             try
             {
                 if (contexto.Usuarios.Add(usuario) != null)
                 {
                     contexto.SaveChanges();
+                    contexto.Dispose();
                     paso = true;
                 }
-                contexto.Dispose();
-
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
-
             return paso;
         }
 
-        public static bool Eliminar(int id)
+        public static bool Eliminar(int Id)
         {
-
             bool paso = false;
             Contexto contexto = new Contexto();
-
             try
             {
-                Usuario usuario = contexto.Usuarios.Find(id);
-
-                if (usuario != null)
+                var eliminar = contexto.Usuarios.Find(Id);
+                if (eliminar != null)
                 {
-                    contexto.Entry(usuario).State = EntityState.Deleted;
+                    contexto.Entry(eliminar).State = EntityState.Deleted;
+                    if (contexto.SaveChanges() > 0)
+                    {
+                        contexto.Dispose();
+                        paso = true;
+                    }
                 }
 
-                if (contexto.SaveChanges() > 0)
-                {
-                    paso = true;
-                    contexto.Dispose();
-                }
-                
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
-
             return paso;
         }
-
-
 
         public static bool Modificar(Usuario usuario)
         {
-
             bool paso = false;
             Contexto contexto = new Contexto();
-
             try
             {
                 contexto.Entry(usuario).State = EntityState.Modified;
-
                 if (contexto.SaveChanges() > 0)
                 {
+                    contexto.Dispose();
                     paso = true;
                 }
-                contexto.Dispose();
-
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 throw;
             }
 
             return paso;
         }
-        
+
         public static Usuario Buscar(int id)
         {
             Usuario usuario = new Usuario();
             Contexto contexto = new Contexto();
-
             try
             {
                 usuario = contexto.Usuarios.Find(id);
@@ -101,35 +88,26 @@ namespace TicketsDeportivos.BLL
             }
             catch (Exception)
             {
+
                 throw;
             }
             return usuario;
         }
-        
-        public static List<Usuario> GetList(Expression<Func<Usuario, bool>> expression)
-        {
-            List<Usuario> usuario = new List<Usuario>();
-            Contexto contexto = new Contexto();
 
+        public static List<Usuario> GetList(Expression<Func<Usuario, bool>> usua)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            Contexto contexto = new Contexto();
             try
             {
-                usuario = contexto.Usuarios.Where(expression).ToList();
+                usuarios = contexto.Usuarios.Where(usua).ToList();
                 contexto.Dispose();
-
             }
             catch (Exception)
             {
                 throw;
             }
-            return usuario;
+            return usuarios;
         }
-        
-        public static void LoginUsuario(string nombre, int id)
-        {
-            usuario.Nombres = nombre;
-            usuario.UsuarioId = id;
-        }
-
-
     }
 }

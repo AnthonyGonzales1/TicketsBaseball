@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,7 @@ namespace TicketsDeportivos.Entidades
         public int Ticket { get; set; }
         public int Cantidad { get; set; }
         public string Descripcion { get; set; }
-        public decimal Total { get; set; }
-
-        public List<Partido> Ventapartido { get; set; }
+        public int Total { get; set; }
 
         public Venta()
         {
@@ -28,10 +27,9 @@ namespace TicketsDeportivos.Entidades
             this.Cantidad = 0;
             this.Descripcion = string.Empty;
             this.Total = 0;
-            this.Ventapartido = new List<Partido>();
         }
 
-        public Venta(int ventaid, int usuarioid, DateTime fecha, int ticket, string descripcion, int cantidad, decimal total)
+        public Venta(int ventaid, int usuarioid, DateTime fecha, int ticket, string descripcion, int cantidad, int total)
         {
             this.VentaId = ventaid;
             this.UsuarioId = usuarioid;
@@ -40,11 +38,6 @@ namespace TicketsDeportivos.Entidades
             this.Cantidad = cantidad;
             this.Descripcion = descripcion;
             this.Total = total;
-        }
-
-        public void AgregarVenta(int EventoId)
-        {
-            this.Ventapartido.Add(new Partido(EventoId));
         }
     }
 }

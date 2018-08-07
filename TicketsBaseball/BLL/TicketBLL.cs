@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TicketsDeportivos.Entidades;
-using TicketsDeportivos.DAL;
 using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Data;
+using System.Text;
+using TicketsDeportivos.DAL;
+using TicketsDeportivos.Entidades;
 
 namespace TicketsDeportivos.BLL
 {
-    public class PartidosBLL
+    public class TicketBLL
     {
-        public static bool Guardar(Partido partido)
+        public static bool Guardar(Ticket ticket)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Partidos.Add(partido) != null)
+                if (contexto.Tickets.Add(ticket) != null)
                 {
                     contexto.SaveChanges();
                     contexto.Dispose();
@@ -38,7 +37,7 @@ namespace TicketsDeportivos.BLL
             Contexto contexto = new Contexto();
             try
             {
-                var eliminar = contexto.Partidos.Find(Id);
+                var eliminar = contexto.Tickets.Find(Id);
                 if (eliminar != null)
                 {
                     contexto.Entry(eliminar).State = EntityState.Deleted;
@@ -48,6 +47,7 @@ namespace TicketsDeportivos.BLL
                         paso = true;
                     }
                 }
+
             }
             catch (Exception)
             {
@@ -56,13 +56,13 @@ namespace TicketsDeportivos.BLL
             return paso;
         }
 
-        public static bool Modificar(Partido partido)
+        public static bool Modificar(Ticket ticket)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                contexto.Entry(partido).State = EntityState.Modified;
+                contexto.Entry(ticket).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
                     contexto.Dispose();
@@ -77,14 +77,14 @@ namespace TicketsDeportivos.BLL
             return paso;
         }
 
-        public static Partido Buscar(int id)
+        public static Ticket Buscar(int id)
         {
-            Partido partido = new Partido();
+            Ticket ticket = new Ticket();
             Contexto contexto = new Contexto();
             try
             {
 
-                partido = contexto.Partidos.Find(id);
+                ticket = contexto.Tickets.Find(id);
                 contexto.Dispose();
             }
             catch (Exception)
@@ -92,45 +92,23 @@ namespace TicketsDeportivos.BLL
 
                 throw;
             }
-            return partido;
+            return ticket;
         }
 
-        public static void AumentarCantidad(List<PartidoDetalle> detalles)
+        public static List<Ticket> GetList(Expression<Func<Ticket, bool>> tic)
         {
-            foreach (var item in detalles)
-            {
-                var partido = BLL.PartidosBLL.Buscar(item.Id);
-
-                partido.CantidadDisponible += item.CantidadDisponible;
-                BLL.PartidosBLL.Modificar(partido);
-            }
-        }
-
-        public static void RebajarCantidad(List<PartidoDetalle> detalles)
-        {
-            foreach (var item in detalles)
-            {
-                var partido = BLL.PartidosBLL.Buscar(item.Id);
-                
-                partido.CantidadDisponible -= item.CantidadDisponible;
-                BLL.PartidosBLL.Modificar(partido);
-            }
-        }
-
-        public static List<Partido> GetList(Expression<Func<Partido, bool>> parti)
-        {
-            List<Partido> partidos = new List<Partido>();
+            List<Ticket> tickets = new List<Ticket>();
             Contexto contexto = new Contexto();
             try
             {
-                partidos = contexto.Partidos.Where(parti).ToList();
+                tickets = contexto.Tickets.Where(tic).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
             {
                 throw;
             }
-            return partidos;
+            return tickets;
         }
     }
 }

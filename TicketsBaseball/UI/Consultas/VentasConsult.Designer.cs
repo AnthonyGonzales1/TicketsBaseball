@@ -43,7 +43,7 @@
             this.Filtrolabel = new System.Windows.Forms.Label();
             this.FiltrocomboBox = new System.Windows.Forms.ComboBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.FechacheckBox = new System.Windows.Forms.CheckBox();
+            this.FechaPartidocheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.VentasdataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -213,8 +213,8 @@
             this.FiltrocomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
-            "EventoId",
-            "NombreEvento"});
+            "PartidoId",
+            "NombrePartido"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(66, 114);
             this.FiltrocomboBox.Name = "FiltrocomboBox";
             this.FiltrocomboBox.Size = new System.Drawing.Size(145, 21);
@@ -225,24 +225,24 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // FechacheckBox
+            // FechaPartidocheckBox
             // 
-            this.FechacheckBox.AutoSize = true;
-            this.FechacheckBox.Checked = true;
-            this.FechacheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.FechacheckBox.Location = new System.Drawing.Point(94, 66);
-            this.FechacheckBox.Name = "FechacheckBox";
-            this.FechacheckBox.Size = new System.Drawing.Size(107, 17);
-            this.FechacheckBox.TabIndex = 42;
-            this.FechacheckBox.Text = "Buscar por fecha";
-            this.FechacheckBox.UseVisualStyleBackColor = true;
+            this.FechaPartidocheckBox.AutoSize = true;
+            this.FechaPartidocheckBox.Checked = true;
+            this.FechaPartidocheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FechaPartidocheckBox.Location = new System.Drawing.Point(94, 66);
+            this.FechaPartidocheckBox.Name = "FechaPartidocheckBox";
+            this.FechaPartidocheckBox.Size = new System.Drawing.Size(143, 17);
+            this.FechaPartidocheckBox.TabIndex = 42;
+            this.FechaPartidocheckBox.Text = "Buscar por FechaPartido";
+            this.FechaPartidocheckBox.UseVisualStyleBackColor = true;
             // 
             // VentasConsult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 424);
-            this.Controls.Add(this.FechacheckBox);
+            this.Controls.Add(this.FechaPartidocheckBox);
             this.Controls.Add(this.Imprimirbutton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -282,6 +282,6 @@
         private System.Windows.Forms.Label Filtrolabel;
         private System.Windows.Forms.ComboBox FiltrocomboBox;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.CheckBox FechacheckBox;
+        private System.Windows.Forms.CheckBox FechaPartidocheckBox;
     }
 }

@@ -394,7 +394,6 @@
             this.Controls.Add(this.TelefonomaskedTextBox);
             this.Name = "UsuariosForm";
             this.Text = "UsuariosForm";
-            this.Load += new System.EventHandler(this.UsuariosForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.FotopictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();

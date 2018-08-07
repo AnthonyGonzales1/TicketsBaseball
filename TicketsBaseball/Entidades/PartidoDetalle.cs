@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -12,26 +13,23 @@ namespace TicketsDeportivos.Entidades
     {
         [Key]
         public int Id { get; set; }
-        public int PartidoId { get; set; }
-
+        public int TicketId { get; set; }
         public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
-        public decimal Precio { get; set; }
+        public int CantidadDisponible { get; set; }
+        public int PrecioTicket { get; set; }
 
         public PartidoDetalle()
         {
             this.Id = 0;
-            this.PartidoId = 0;
-            this.Descripcion = string.Empty;
-            this.Cantidad = 0;
-            this.Precio = 0;
         }
 
-        public PartidoDetalle(string descripcion, int cantidad, decimal precio)
+        public PartidoDetalle(int id, int ticketId, string descripcion, int cantidadDisponible, int precioTicket)
         {
+            this.Id = id;
+            this.TicketId = ticketId;
             this.Descripcion = descripcion;
-            this.Cantidad = cantidad;
-            this.Precio = precio;
+            this.CantidadDisponible = cantidadDisponible;
+            this.PrecioTicket = precioTicket;
         }
     }
 }

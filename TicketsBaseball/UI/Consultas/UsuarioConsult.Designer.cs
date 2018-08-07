@@ -147,8 +147,9 @@
             this.FiltrocomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
-            "EventoId",
-            "NombreEvento"});
+            "UsuarioId",
+            "Nombres",
+            "Apellidos"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(60, 74);
             this.FiltrocomboBox.Name = "FiltrocomboBox";
             this.FiltrocomboBox.Size = new System.Drawing.Size(149, 21);

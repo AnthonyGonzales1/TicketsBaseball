@@ -13,7 +13,7 @@ namespace TicketsDeportivos.DAL
     {
         public DbSet<Partido> Partidos { get; set; }
         public DbSet<TipoPartido> TipoPartidos { get; set; }
-
+        public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Venta> Ventas { get; set; }
 

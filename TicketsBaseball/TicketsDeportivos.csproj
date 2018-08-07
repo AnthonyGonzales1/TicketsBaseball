@@ -64,6 +64,8 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="BLL\TicketBLL.cs" />
+    <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,8 +80,8 @@
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\Repositorio.cs" />
-    <Compile Include="Entidades\Partido.cs" />
     <Compile Include="Entidades\PartidoDetalle.cs" />
+    <Compile Include="Entidades\Partido.cs" />
     <Compile Include="Entidades\TipoPartido.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\Venta.cs" />
@@ -102,6 +104,12 @@
     </Compile>
     <Compile Include="UI\Consultas\PartidoConsult.Designer.cs">
       <DependentUpon>PartidoConsult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\TicketsConsult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\TicketsConsult.Designer.cs">
+      <DependentUpon>TicketsConsult.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Consultas\TipoPartidoConsult.cs">
       <SubType>Form</SubType>
@@ -126,6 +134,12 @@
     </Compile>
     <Compile Include="UI\Registros\PartidosForm.Designer.cs">
       <DependentUpon>PartidosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\TicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\TicketForm.Designer.cs">
+      <DependentUpon>TicketForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registros\TipoPartidosForm.cs">
       <SubType>Form</SubType>
@@ -157,6 +171,18 @@
     <Compile Include="UI\Reportes\PartidoReviewer.Designer.cs">
       <DependentUpon>PartidoReviewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\TicketsCrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TicketsCrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\TicketsReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\TicketsReviewer.Designer.cs">
+      <DependentUpon>TicketsReviewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Reportes\TipoPartidoCrystalReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -181,11 +207,23 @@
     <Compile Include="UI\Reportes\UsuarioReviewer.Designer.cs">
       <DependentUpon>UsuarioReviewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\VentasReciboCrystalReport1.cs">
+      <DependentUpon>VentasReciboCrystalReport1.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="UI\Reportes\VentasCrystalReport1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VentasCrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\VentasReciboReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\VentasReciboReviewer.Designer.cs">
+      <DependentUpon>VentasReciboReviewer.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Reportes\VentasReviewer.cs">
       <SubType>Form</SubType>
@@ -218,6 +256,9 @@
     <EmbeddedResource Include="UI\Consultas\PartidoConsult.resx">
       <DependentUpon>PartidoConsult.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\TicketsConsult.resx">
+      <DependentUpon>TicketsConsult.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Consultas\TipoPartidoConsult.resx">
       <DependentUpon>TipoPartidoConsult.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\PartidosForm.resx">
       <DependentUpon>PartidosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\TicketForm.resx">
+      <DependentUpon>TicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\TipoPartidosForm.resx">
       <DependentUpon>TipoPartidosForm.cs</DependentUpon>
@@ -246,6 +290,13 @@
     <EmbeddedResource Include="UI\Reportes\PartidoReviewer.resx">
       <DependentUpon>PartidoReviewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\TicketsCrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TicketsCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\TicketsReviewer.resx">
+      <DependentUpon>TicketsReviewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\TipoPartidoCrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>TipoPartidoCrystalReport1.cs</LastGenOutput>
@@ -260,9 +311,16 @@
     <EmbeddedResource Include="UI\Reportes\UsuarioReviewer.resx">
       <DependentUpon>UsuarioReviewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\VentasReciboCrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasReciboCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\VentasCrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>VentasCrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\VentasReciboReviewer.resx">
+      <DependentUpon>VentasReciboReviewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\VentasReviewer.resx">
       <DependentUpon>VentasReviewer.cs</DependentUpon>
@@ -283,10 +341,10 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Scripts\Scripts.sql" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+    <Content Include="DAL\Scripts\Scripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

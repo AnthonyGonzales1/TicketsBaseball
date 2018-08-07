@@ -71,7 +71,7 @@ namespace TicketsDeportivos.UI.Registros
                    "Debe introducir un Id");
                 paso = true;
             }
-            if (error == 2 && string.IsNullOrWhiteSpace(DescripciontextBox.Text))
+            if (error == 2 && DescripciontextBox.Text == string.Empty)
             {
                 errorProvider.SetError(DescripciontextBox,
                    "Debe ingresar una Descripcion");
@@ -100,6 +100,7 @@ namespace TicketsDeportivos.UI.Registros
         {
             MessageBox.Show(mensaje, "Registro de Tipo Partidos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
+
         private TipoPartido LlenaClase()
         {
             TipoPartido tipoPartido =new TipoPartido();
@@ -159,11 +160,19 @@ namespace TicketsDeportivos.UI.Registros
                 }
                 else
                 {
-                    var partidos = BLL.TipoPartidosBLL.Buscar(Convert.ToInt32(IdnumericUpDown.Value));
+                    var result = MessageBox.Show("Seguro de Modificar?", "+Ventas",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (partidos != null)
+                    if (result == DialogResult.Yes)
                     {
-                        paso = BLL.TipoPartidosBLL.Modificar(tipoPartido);
+                        if (BLL.TipoPartidosBLL.Modificar(LlenaClase()))
+                        {
+                            MessageBox.Show("Modificado!!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo Guardar!!");
+                        }
                     }
                 }
                 Limpiar();
@@ -181,10 +190,7 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Nuevobutton_Click(object sender, EventArgs e)
         {
-            Eliminarbutton.Enabled = false;
-            errorProvider.Clear();
             Limpiar();
-            Guardarbutton.Text = "Guardar";
         }
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
@@ -208,6 +214,31 @@ namespace TicketsDeportivos.UI.Registros
                 }
                 errorProvider.Clear();
             }
+        }
+
+        private void Titulolabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DescripciontextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Descripcionlabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IdTipoPartidolabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TipoPartidosForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
