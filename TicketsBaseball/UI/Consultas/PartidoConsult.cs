@@ -94,11 +94,11 @@ namespace TicketsDeportivos.UI.Consultas
                     id = int.Parse(CriteriotextBox.Text);
                     if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.TipoPartidoId == id && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.TipoPartidoId.Contains(CriteriotextBox.Text) && (t.FechaPartido.Day >= DesdedateTimePicker.Value.Day) && (t.FechaPartido.Month >= DesdedateTimePicker.Value.Month) && (t.FechaPartido.Year >= DesdedateTimePicker.Value.Year) && (t.FechaPartido.Day <= HastadateTimePicker.Value.Day) && (t.FechaPartido.Month <= HastadateTimePicker.Value.Month) && (t.FechaPartido.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.TipoPartidoId == id;
+                        filtrar = t => t.TipoPartidoId.Contains(CriteriotextBox.Text);
                     }
 
                     break;

@@ -69,6 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(89, 69);
             this.label2.Name = "label2";
@@ -82,6 +83,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(290, 67);
             this.label1.Name = "label1";
@@ -112,6 +114,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -129,7 +132,7 @@
             this.PartidodataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PartidodataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.PartidodataGridView.BackgroundColor = System.Drawing.Color.IndianRed;
             this.PartidodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PartidodataGridView.GridColor = System.Drawing.SystemColors.ControlLight;
             this.PartidodataGridView.Location = new System.Drawing.Point(14, 126);
@@ -173,6 +176,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Filtrolabel.AutoSize = true;
+            this.Filtrolabel.BackColor = System.Drawing.Color.Transparent;
             this.Filtrolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Filtrolabel.Location = new System.Drawing.Point(14, 92);
             this.Filtrolabel.Name = "Filtrolabel";
@@ -214,6 +218,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Cantlabel.AutoSize = true;
+            this.Cantlabel.BackColor = System.Drawing.Color.Transparent;
             this.Cantlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cantlabel.Location = new System.Drawing.Point(11, 355);
             this.Cantlabel.Name = "Cantlabel";
@@ -228,19 +233,22 @@
             // FechaPartidocheckBox
             // 
             this.FechaPartidocheckBox.AutoSize = true;
+            this.FechaPartidocheckBox.BackColor = System.Drawing.Color.Transparent;
             this.FechaPartidocheckBox.Checked = true;
             this.FechaPartidocheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FechaPartidocheckBox.Location = new System.Drawing.Point(92, 41);
             this.FechaPartidocheckBox.Name = "FechaPartidocheckBox";
-            this.FechaPartidocheckBox.Size = new System.Drawing.Size(107, 17);
+            this.FechaPartidocheckBox.Size = new System.Drawing.Size(143, 17);
             this.FechaPartidocheckBox.TabIndex = 41;
             this.FechaPartidocheckBox.Text = "Buscar por FechaPartido";
-            this.FechaPartidocheckBox.UseVisualStyleBackColor = true;
+            this.FechaPartidocheckBox.UseVisualStyleBackColor = false;
             // 
             // PartidoConsult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(634, 400);
             this.Controls.Add(this.FechaPartidocheckBox);
             this.Controls.Add(this.Imprimirbutton);

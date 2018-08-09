@@ -66,6 +66,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
             this.Titulolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -74,11 +75,11 @@
             this.Titulolabel.Size = new System.Drawing.Size(225, 25);
             this.Titulolabel.TabIndex = 45;
             this.Titulolabel.Text = "Registro de Partidos";
-            this.Titulolabel.Click += new System.EventHandler(this.Titulolabel_Click);
             // 
             // Preciolabel
             // 
             this.Preciolabel.AutoSize = true;
+            this.Preciolabel.BackColor = System.Drawing.Color.Transparent;
             this.Preciolabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Preciolabel.Location = new System.Drawing.Point(370, 168);
             this.Preciolabel.Name = "Preciolabel";
@@ -89,6 +90,7 @@
             // Cantidadlabel
             // 
             this.Cantidadlabel.AutoSize = true;
+            this.Cantidadlabel.BackColor = System.Drawing.Color.Transparent;
             this.Cantidadlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cantidadlabel.Location = new System.Drawing.Point(332, 137);
             this.Cantidadlabel.Name = "Cantidadlabel";
@@ -99,6 +101,7 @@
             // Descripcionlabel
             // 
             this.Descripcionlabel.AutoSize = true;
+            this.Descripcionlabel.BackColor = System.Drawing.Color.Transparent;
             this.Descripcionlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Descripcionlabel.Location = new System.Drawing.Point(378, 102);
             this.Descripcionlabel.Name = "Descripcionlabel";
@@ -109,6 +112,7 @@
             // PartidoIdlabel
             // 
             this.PartidoIdlabel.AutoSize = true;
+            this.PartidoIdlabel.BackColor = System.Drawing.Color.Transparent;
             this.PartidoIdlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PartidoIdlabel.Location = new System.Drawing.Point(44, 69);
             this.PartidoIdlabel.Name = "PartidoIdlabel";
@@ -123,7 +127,6 @@
             this.LugarPartidotextBox.Name = "LugarPartidotextBox";
             this.LugarPartidotextBox.Size = new System.Drawing.Size(154, 20);
             this.LugarPartidotextBox.TabIndex = 39;
-            this.LugarPartidotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LugarPartidotextBox_KeyPress);
             // 
             // NombrePartidotextBox
             // 
@@ -132,7 +135,6 @@
             this.NombrePartidotextBox.Name = "NombrePartidotextBox";
             this.NombrePartidotextBox.Size = new System.Drawing.Size(154, 20);
             this.NombrePartidotextBox.TabIndex = 37;
-            this.NombrePartidotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombrePartidotextBox_KeyPress);
             // 
             // TipoPartidocomboBox
             // 
@@ -142,7 +144,6 @@
             this.TipoPartidocomboBox.Name = "TipoPartidocomboBox";
             this.TipoPartidocomboBox.Size = new System.Drawing.Size(154, 21);
             this.TipoPartidocomboBox.TabIndex = 36;
-            this.TipoPartidocomboBox.SelectedIndexChanged += new System.EventHandler(this.TipoPartidocomboBox_SelectedIndexChanged);
             // 
             // Buscarbutton
             // 
@@ -214,6 +215,7 @@
             // LugarPartidolabel
             // 
             this.LugarPartidolabel.AutoSize = true;
+            this.LugarPartidolabel.BackColor = System.Drawing.Color.Transparent;
             this.LugarPartidolabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LugarPartidolabel.Location = new System.Drawing.Point(25, 254);
             this.LugarPartidolabel.Name = "LugarPartidolabel";
@@ -224,6 +226,7 @@
             // FechaPartidolabel
             // 
             this.FechaPartidolabel.AutoSize = true;
+            this.FechaPartidolabel.BackColor = System.Drawing.Color.Transparent;
             this.FechaPartidolabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FechaPartidolabel.Location = new System.Drawing.Point(24, 207);
             this.FechaPartidolabel.Name = "FechaPartidolabel";
@@ -234,6 +237,7 @@
             // NombrePartidolabel
             // 
             this.NombrePartidolabel.AutoSize = true;
+            this.NombrePartidolabel.BackColor = System.Drawing.Color.Transparent;
             this.NombrePartidolabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombrePartidolabel.Location = new System.Drawing.Point(15, 164);
             this.NombrePartidolabel.Name = "NombrePartidolabel";
@@ -244,6 +248,7 @@
             // TipoIdlabel
             // 
             this.TipoIdlabel.AutoSize = true;
+            this.TipoIdlabel.BackColor = System.Drawing.Color.Transparent;
             this.TipoIdlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TipoIdlabel.Location = new System.Drawing.Point(17, 121);
             this.TipoIdlabel.Name = "TipoIdlabel";
@@ -257,7 +262,6 @@
             this.IdnumericUpDown.Name = "IdnumericUpDown";
             this.IdnumericUpDown.Size = new System.Drawing.Size(71, 20);
             this.IdnumericUpDown.TabIndex = 46;
-            this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
             // 
             // Eliminarbutton
             // 
@@ -291,15 +295,17 @@
             // 
             // PartidodataGridView
             // 
+            this.PartidodataGridView.BackgroundColor = System.Drawing.Color.IndianRed;
             this.PartidodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartidodataGridView.Location = new System.Drawing.Point(335, 244);
+            this.PartidodataGridView.Location = new System.Drawing.Point(290, 244);
             this.PartidodataGridView.Name = "PartidodataGridView";
-            this.PartidodataGridView.Size = new System.Drawing.Size(295, 131);
+            this.PartidodataGridView.Size = new System.Drawing.Size(340, 131);
             this.PartidodataGridView.TabIndex = 52;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(392, 66);
             this.label1.Name = "label1";
@@ -341,11 +347,14 @@
             this.CantidadtextBox.Name = "CantidadtextBox";
             this.CantidadtextBox.Size = new System.Drawing.Size(121, 20);
             this.CantidadtextBox.TabIndex = 61;
+            this.CantidadtextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CantidadtextBox_KeyPress);
             // 
             // PartidosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(642, 387);
             this.Controls.Add(this.CantidadtextBox);
             this.Controls.Add(this.TicketcomboBox);
@@ -375,7 +384,6 @@
             this.Controls.Add(this.Agregarbutton);
             this.Name = "PartidosForm";
             this.Text = "PartidosForm";
-            this.Load += new System.EventHandler(this.PartidosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IderrorProvider)).EndInit();

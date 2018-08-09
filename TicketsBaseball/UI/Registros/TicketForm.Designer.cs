@@ -57,6 +57,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulolabel.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -132,6 +133,7 @@
             // Descripcionlabel
             // 
             this.Descripcionlabel.AutoSize = true;
+            this.Descripcionlabel.BackColor = System.Drawing.Color.Transparent;
             this.Descripcionlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Descripcionlabel.Location = new System.Drawing.Point(14, 197);
             this.Descripcionlabel.Name = "Descripcionlabel";
@@ -142,6 +144,7 @@
             // IdTipoPartidolabel
             // 
             this.IdTipoPartidolabel.AutoSize = true;
+            this.IdTipoPartidolabel.BackColor = System.Drawing.Color.Transparent;
             this.IdTipoPartidolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdTipoPartidolabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.IdTipoPartidolabel.Location = new System.Drawing.Point(15, 78);
@@ -153,6 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label1.Location = new System.Drawing.Point(15, 118);
@@ -168,6 +172,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(15, 157);
             this.label2.Name = "label2";
@@ -191,11 +196,15 @@
             this.PreciotextBox.Name = "PreciotextBox";
             this.PreciotextBox.Size = new System.Drawing.Size(119, 20);
             this.PreciotextBox.TabIndex = 39;
+            //this.PreciotextBox.TextChanged += new System.EventHandler(this.PreciotextBox_TextChanged);
+            this.PreciotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PreciotextBox_KeyPress);
             // 
             // TicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(295, 308);
             this.Controls.Add(this.PreciotextBox);
             this.Controls.Add(this.TipoPartidocomboBox);
@@ -212,7 +221,6 @@
             this.Controls.Add(this.IdTipoPartidolabel);
             this.Name = "TicketForm";
             this.Text = "TicketForm";
-            this.Load += new System.EventHandler(this.TicketForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

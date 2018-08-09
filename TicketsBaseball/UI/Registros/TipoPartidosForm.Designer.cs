@@ -46,6 +46,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulolabel.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -54,7 +55,7 @@
             this.Titulolabel.Size = new System.Drawing.Size(214, 23);
             this.Titulolabel.TabIndex = 12;
             this.Titulolabel.Text = "Registro Tipo Partido";
-            this.Titulolabel.Click += new System.EventHandler(this.Titulolabel_Click);
+            //this.Titulolabel.Click += new System.EventHandler(this.Titulolabel_Click);
             // 
             // Eliminarbutton
             // 
@@ -118,22 +119,24 @@
             this.DescripciontextBox.Name = "DescripciontextBox";
             this.DescripciontextBox.Size = new System.Drawing.Size(177, 20);
             this.DescripciontextBox.TabIndex = 10;
-            this.DescripciontextBox.TextChanged += new System.EventHandler(this.DescripciontextBox_TextChanged);
+            //this.DescripciontextBox.TextChanged += new System.EventHandler(this.DescripciontextBox_TextChanged);
             // 
             // Descripcionlabel
             // 
             this.Descripcionlabel.AutoSize = true;
+            this.Descripcionlabel.BackColor = System.Drawing.Color.Transparent;
             this.Descripcionlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Descripcionlabel.Location = new System.Drawing.Point(22, 137);
             this.Descripcionlabel.Name = "Descripcionlabel";
             this.Descripcionlabel.Size = new System.Drawing.Size(80, 14);
             this.Descripcionlabel.TabIndex = 8;
             this.Descripcionlabel.Text = "Descripcion:";
-            this.Descripcionlabel.Click += new System.EventHandler(this.Descripcionlabel_Click);
+            //this.Descripcionlabel.Click += new System.EventHandler(this.Descripcionlabel_Click);
             // 
             // IdTipoPartidolabel
             // 
             this.IdTipoPartidolabel.AutoSize = true;
+            this.IdTipoPartidolabel.BackColor = System.Drawing.Color.Transparent;
             this.IdTipoPartidolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IdTipoPartidolabel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.IdTipoPartidolabel.Location = new System.Drawing.Point(77, 74);
@@ -141,7 +144,7 @@
             this.IdTipoPartidolabel.Size = new System.Drawing.Size(25, 14);
             this.IdTipoPartidolabel.TabIndex = 9;
             this.IdTipoPartidolabel.Text = "ID:";
-            this.IdTipoPartidolabel.Click += new System.EventHandler(this.IdTipoPartidolabel_Click);
+            //this.IdTipoPartidolabel.Click += new System.EventHandler(this.IdTipoPartidolabel_Click);
             // 
             // IdnumericUpDown
             // 
@@ -149,7 +152,7 @@
             this.IdnumericUpDown.Name = "IdnumericUpDown";
             this.IdnumericUpDown.Size = new System.Drawing.Size(106, 20);
             this.IdnumericUpDown.TabIndex = 13;
-            this.IdnumericUpDown.ValueChanged += new System.EventHandler(this.IdnumericUpDown_ValueChanged);
+            //this.IdnumericUpDown.ValueChanged += new System.EventHandler(this.IdnumericUpDown_ValueChanged);
             // 
             // errorProvider
             // 
@@ -159,6 +162,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(306, 252);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);
@@ -171,7 +176,7 @@
             this.Controls.Add(this.IdTipoPartidolabel);
             this.Name = "TipoPartidosForm";
             this.Text = "TipoPartidoForm";
-            this.Load += new System.EventHandler(this.TipoPartidosForm_Load);
+            //this.Load += new System.EventHandler(this.TipoPartidosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

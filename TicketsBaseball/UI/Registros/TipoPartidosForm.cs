@@ -36,28 +36,10 @@ namespace TicketsDeportivos.UI.Registros
                 Guardarbutton.Focus();
             }
         }
-        
-        private void IdnumericUpDown_ValueChanged(object sender, EventArgs e)
-        {/*
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(IdnumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                Buscarbutton.Focus();
-            }
-            */
-        }
 
         private void Limpiar()
         {
+            IdnumericUpDown.Value = 0;
             DescripciontextBox.Clear();
         }
 
@@ -104,13 +86,13 @@ namespace TicketsDeportivos.UI.Registros
         private TipoPartido LlenaClase()
         {
             TipoPartido tipoPartido =new TipoPartido();
-            if (tipoPartido.TipoPartidoId == 0 )
+            if (IdnumericUpDown.Value == 0)
             {
                 tipoPartido.TipoPartidoId = 0;
             }
             else
             {
-                tipoPartido.TipoPartidoId = Convert.ToInt32(tipoPartido.TipoPartidoId);
+                tipoPartido.TipoPartidoId = Convert.ToInt32(IdnumericUpDown.Value);
 
             }
             tipoPartido.Descripcion = DescripciontextBox.Text;
@@ -145,22 +127,30 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
-            bool paso = false;
-            tipoPartido = LlenaClase();
-            
             if (Validar(2))
             {
-                MessageBox.Show("Favor de llenar las Casillas");
+                MessageBox.Show("Llenar Campos vacios");
+                errorProvider.Clear();
+                return;
             }
             else
             {
+                tipoPartido = LlenaClase();
                 if (IdnumericUpDown.Value == 0)
                 {
-                    paso = BLL.TipoPartidosBLL.Guardar(tipoPartido);
+                    if (BLL.TipoPartidosBLL.Guardar(tipoPartido))
+                    {
+                        MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo Guardar!!");
+                    }
                 }
                 else
                 {
-                    var result = MessageBox.Show("Seguro de Modificar?", "+Ventas",
+                    var result = MessageBox.Show("Seguro de Modificar?", "+TipoPartidos",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
@@ -168,6 +158,7 @@ namespace TicketsDeportivos.UI.Registros
                         if (BLL.TipoPartidosBLL.Modificar(LlenaClase()))
                         {
                             MessageBox.Show("Modificado!!");
+                            Limpiar();
                         }
                         else
                         {
@@ -177,14 +168,6 @@ namespace TicketsDeportivos.UI.Registros
                 }
                 Limpiar();
                 errorProvider.Clear();
-                if (paso)
-                {
-                    MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No pudo Guardar!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
@@ -199,46 +182,21 @@ namespace TicketsDeportivos.UI.Registros
             {
                 MessageBox.Show("Favor de llenar casilla para poder Eliminar");
             }
-            else
-            {
-                int id = Convert.ToInt32(IdnumericUpDown.Value);
+            var result = MessageBox.Show("Seguro de  Eliminar?", "+Tipo de Partidos",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (BLL.TipoPartidosBLL.Eliminar(id))
+            if (result == DialogResult.Yes)
+            {
+                if (BLL.PartidosBLL.Eliminar(Convert.ToInt32(IdnumericUpDown.Value)))
                 {
-                    MessageBox.Show("Eliminado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Eliminado");
                     Limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("No Pudo Eliminar!", "Fallido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo eliminar");
                 }
-                errorProvider.Clear();
             }
-        }
-
-        private void Titulolabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DescripciontextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Descripcionlabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void IdTipoPartidolabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TipoPartidosForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

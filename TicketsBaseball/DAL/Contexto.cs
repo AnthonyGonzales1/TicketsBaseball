@@ -16,8 +16,9 @@ namespace TicketsDeportivos.DAL
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Venta> Ventas { get; set; }
-
+        
         public DbSet<PartidoDetalle> PartidoDetalles { get; set; }
+        public DbSet<VentaDetalle> VentaDetalles { get; set; }
         // base("ConStr") para pasar la conexion a la clase base de EntityFramework 
         public Contexto() : base("ConStr")
         { }

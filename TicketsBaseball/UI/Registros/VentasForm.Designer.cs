@@ -52,13 +52,18 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.IdnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CantidadcomboBox = new System.Windows.Forms.ComboBox();
+            this.VentadataGridView = new System.Windows.Forms.DataGridView();
+            this.Borrarbutton = new System.Windows.Forms.Button();
+            this.Agregarbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VentadataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -71,8 +76,9 @@
             // Totallabel
             // 
             this.Totallabel.AutoSize = true;
+            this.Totallabel.BackColor = System.Drawing.Color.Transparent;
             this.Totallabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Totallabel.Location = new System.Drawing.Point(15, 277);
+            this.Totallabel.Location = new System.Drawing.Point(17, 422);
             this.Totallabel.Name = "Totallabel";
             this.Totallabel.Size = new System.Drawing.Size(42, 14);
             this.Totallabel.TabIndex = 34;
@@ -81,6 +87,7 @@
             // Descripcionlabel
             // 
             this.Descripcionlabel.AutoSize = true;
+            this.Descripcionlabel.BackColor = System.Drawing.Color.Transparent;
             this.Descripcionlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Descripcionlabel.Location = new System.Drawing.Point(309, 169);
             this.Descripcionlabel.Name = "Descripcionlabel";
@@ -91,6 +98,7 @@
             // Ticketlabel
             // 
             this.Ticketlabel.AutoSize = true;
+            this.Ticketlabel.BackColor = System.Drawing.Color.Transparent;
             this.Ticketlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ticketlabel.Location = new System.Drawing.Point(339, 76);
             this.Ticketlabel.Name = "Ticketlabel";
@@ -101,6 +109,7 @@
             // Cantlabel
             // 
             this.Cantlabel.AutoSize = true;
+            this.Cantlabel.BackColor = System.Drawing.Color.Transparent;
             this.Cantlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cantlabel.Location = new System.Drawing.Point(324, 120);
             this.Cantlabel.Name = "Cantlabel";
@@ -111,6 +120,7 @@
             // Fechalabel
             // 
             this.Fechalabel.AutoSize = true;
+            this.Fechalabel.BackColor = System.Drawing.Color.Transparent;
             this.Fechalabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fechalabel.Location = new System.Drawing.Point(51, 229);
             this.Fechalabel.Name = "Fechalabel";
@@ -121,6 +131,7 @@
             // VendidoPorlabel
             // 
             this.VendidoPorlabel.AutoSize = true;
+            this.VendidoPorlabel.BackColor = System.Drawing.Color.Transparent;
             this.VendidoPorlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VendidoPorlabel.Location = new System.Drawing.Point(17, 186);
             this.VendidoPorlabel.Name = "VendidoPorlabel";
@@ -131,6 +142,7 @@
             // Eventolabel
             // 
             this.Eventolabel.AutoSize = true;
+            this.Eventolabel.BackColor = System.Drawing.Color.Transparent;
             this.Eventolabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Eventolabel.Location = new System.Drawing.Point(45, 139);
             this.Eventolabel.Name = "Eventolabel";
@@ -141,6 +153,7 @@
             // VentaIdlabel
             // 
             this.VentaIdlabel.AutoSize = true;
+            this.VentaIdlabel.BackColor = System.Drawing.Color.Transparent;
             this.VentaIdlabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VentaIdlabel.Location = new System.Drawing.Point(36, 81);
             this.VentaIdlabel.Name = "VentaIdlabel";
@@ -154,7 +167,7 @@
             this.Imprimirbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Imprimirbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Imprimirbutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Imprimirbutton.Location = new System.Drawing.Point(497, 310);
+            this.Imprimirbutton.Location = new System.Drawing.Point(497, 456);
             this.Imprimirbutton.Name = "Imprimirbutton";
             this.Imprimirbutton.Size = new System.Drawing.Size(75, 46);
             this.Imprimirbutton.TabIndex = 46;
@@ -193,13 +206,12 @@
             // 
             // TotaltextBox
             // 
-            this.TotaltextBox.Location = new System.Drawing.Point(63, 274);
+            this.TotaltextBox.Location = new System.Drawing.Point(63, 420);
             this.TotaltextBox.MaxLength = 12;
             this.TotaltextBox.Name = "TotaltextBox";
             this.TotaltextBox.ReadOnly = true;
             this.TotaltextBox.Size = new System.Drawing.Size(227, 20);
             this.TotaltextBox.TabIndex = 44;
-            this.TotaltextBox.TextChanged += new System.EventHandler(this.TotaltextBox_TextChanged);
             // 
             // TicketcomboBox
             // 
@@ -240,7 +252,7 @@
             this.Nuevobutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Nuevobutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Nuevobutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Nuevobutton.Location = new System.Drawing.Point(14, 311);
+            this.Nuevobutton.Location = new System.Drawing.Point(14, 457);
             this.Nuevobutton.Name = "Nuevobutton";
             this.Nuevobutton.Size = new System.Drawing.Size(75, 45);
             this.Nuevobutton.TabIndex = 24;
@@ -255,7 +267,7 @@
             this.Guardarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Guardarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Guardarbutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Guardarbutton.Location = new System.Drawing.Point(116, 311);
+            this.Guardarbutton.Location = new System.Drawing.Point(116, 457);
             this.Guardarbutton.Name = "Guardarbutton";
             this.Guardarbutton.Size = new System.Drawing.Size(75, 46);
             this.Guardarbutton.TabIndex = 45;
@@ -270,7 +282,7 @@
             this.Eliminarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.Eliminarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Eliminarbutton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Eliminarbutton.Location = new System.Drawing.Point(215, 311);
+            this.Eliminarbutton.Location = new System.Drawing.Point(215, 457);
             this.Eliminarbutton.Name = "Eliminarbutton";
             this.Eliminarbutton.Size = new System.Drawing.Size(75, 46);
             this.Eliminarbutton.TabIndex = 26;
@@ -300,11 +312,51 @@
             this.CantidadcomboBox.Size = new System.Drawing.Size(116, 21);
             this.CantidadcomboBox.TabIndex = 53;
             // 
+            // VentadataGridView
+            // 
+            this.VentadataGridView.BackgroundColor = System.Drawing.Color.IndianRed;
+            this.VentadataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.VentadataGridView.Location = new System.Drawing.Point(20, 256);
+            this.VentadataGridView.Name = "VentadataGridView";
+            this.VentadataGridView.Size = new System.Drawing.Size(540, 156);
+            this.VentadataGridView.TabIndex = 54;
+            // 
+            // Borrarbutton
+            // 
+            this.Borrarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Borrarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Borrarbutton.Location = new System.Drawing.Point(309, 418);
+            this.Borrarbutton.Name = "Borrarbutton";
+            this.Borrarbutton.Size = new System.Drawing.Size(75, 47);
+            this.Borrarbutton.TabIndex = 56;
+            this.Borrarbutton.Text = "Borrar";
+            this.Borrarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Borrarbutton.UseVisualStyleBackColor = true;
+            this.Borrarbutton.Click += new System.EventHandler(this.Borrarbutton_Click);
+            // 
+            // Agregarbutton
+            // 
+            this.Agregarbutton.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Agregarbutton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Agregarbutton.Location = new System.Drawing.Point(390, 418);
+            this.Agregarbutton.Name = "Agregarbutton";
+            this.Agregarbutton.Size = new System.Drawing.Size(75, 47);
+            this.Agregarbutton.TabIndex = 55;
+            this.Agregarbutton.Text = "Agregar";
+            this.Agregarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Agregarbutton.UseVisualStyleBackColor = true;
+            this.Agregarbutton.Click += new System.EventHandler(this.Agregarbutton_Click);
+            // 
             // VentasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 370);
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(584, 515);
+            this.Controls.Add(this.Borrarbutton);
+            this.Controls.Add(this.Agregarbutton);
+            this.Controls.Add(this.VentadataGridView);
             this.Controls.Add(this.CantidadcomboBox);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);
@@ -329,9 +381,9 @@
             this.Controls.Add(this.Eliminarbutton);
             this.Name = "VentasForm";
             this.Text = "Registro de Ventas";
-            this.Load += new System.EventHandler(this.VentasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdnumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VentadataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,5 +413,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.NumericUpDown IdnumericUpDown;
         private System.Windows.Forms.ComboBox CantidadcomboBox;
+        private System.Windows.Forms.DataGridView VentadataGridView;
+        private System.Windows.Forms.Button Borrarbutton;
+        private System.Windows.Forms.Button Agregarbutton;
     }
 }

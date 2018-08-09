@@ -65,7 +65,9 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="BLL\TicketBLL.cs" />
+    <Compile Include="BLL\VentaDetalleBLL.cs" />
     <Compile Include="Entidades\Ticket.cs" />
+    <Compile Include="Entidades\VentaDetalle.cs" />
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,13 +340,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Content Include="DAL\Scripts\Scripts.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Scripts\Scripts.sql" />
+    <None Include="Resources\Login_Berufsbildung_Logo.svg.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\vector-sporting-event-tickets.jpg" />
+    <None Include="Resources\1378144182.jpg" />
+    <None Include="Resources\UltimateSportsTicket_Media-Twitter-1024x512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

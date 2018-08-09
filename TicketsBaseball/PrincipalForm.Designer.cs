@@ -28,21 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Seccioniniciadalabel = new System.Windows.Forms.Label();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.VentatoolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.UsuariostoolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.PrincipaltoolStrip = new System.Windows.Forms.ToolStrip();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReporteTipoPartidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReporteUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportePartidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReporteVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ticketsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reciboDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConsultaVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConsultaPartidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Usuariolabel = new System.Windows.Forms.Label();
             this.ConsultaTipoPartidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConsultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConsultaUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,63 +53,8 @@
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrincipalmenuStrip = new System.Windows.Forms.MenuStrip();
-            this.ticketsToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reciboDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PrincipaltoolStrip.SuspendLayout();
             this.PrincipalmenuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Seccioniniciadalabel
-            // 
-            this.Seccioniniciadalabel.AutoSize = true;
-            this.Seccioniniciadalabel.BackColor = System.Drawing.Color.CadetBlue;
-            this.Seccioniniciadalabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Seccioniniciadalabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.Seccioniniciadalabel.Location = new System.Drawing.Point(92, 35);
-            this.Seccioniniciadalabel.Name = "Seccioniniciadalabel";
-            this.Seccioniniciadalabel.Size = new System.Drawing.Size(147, 14);
-            this.Seccioniniciadalabel.TabIndex = 7;
-            this.Seccioniniciadalabel.Text = "Seccion iniciada como: ";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // VentatoolStripButton
-            // 
-            this.VentatoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.VentatoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.VentatoolStripButton.Name = "VentatoolStripButton";
-            this.VentatoolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.VentatoolStripButton.Text = "Registro de Ventas";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // UsuariostoolStripButton
-            // 
-            this.UsuariostoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.UsuariostoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UsuariostoolStripButton.Name = "UsuariostoolStripButton";
-            this.UsuariostoolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.UsuariostoolStripButton.Text = "Registro de  usuarios";
-            // 
-            // PrincipaltoolStrip
-            // 
-            this.PrincipaltoolStrip.ImageScalingSize = new System.Drawing.Size(30, 30);
-            this.PrincipaltoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.UsuariostoolStripButton,
-            this.toolStripSeparator1,
-            this.VentatoolStripButton,
-            this.toolStripSeparator2});
-            this.PrincipaltoolStrip.Location = new System.Drawing.Point(0, 24);
-            this.PrincipaltoolStrip.Name = "PrincipaltoolStrip";
-            this.PrincipaltoolStrip.Size = new System.Drawing.Size(580, 25);
-            this.PrincipaltoolStrip.TabIndex = 5;
-            this.PrincipaltoolStrip.Text = "PortadatoolStrip";
             // 
             // AboutToolStripMenuItem
             // 
@@ -125,6 +65,7 @@
             // 
             // ReporteTipoPartidosToolStripMenuItem
             // 
+            this.ReporteTipoPartidosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ReporteTipoPartidosToolStripMenuItem.Name = "ReporteTipoPartidosToolStripMenuItem";
             this.ReporteTipoPartidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ReporteTipoPartidosToolStripMenuItem.Text = "Tipo Partido";
@@ -145,6 +86,7 @@
             // 
             // ReporteUsuariosToolStripMenuItem
             // 
+            this.ReporteUsuariosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ReporteUsuariosToolStripMenuItem.Name = "ReporteUsuariosToolStripMenuItem";
             this.ReporteUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ReporteUsuariosToolStripMenuItem.Text = "Usuarios";
@@ -152,6 +94,7 @@
             // 
             // ReportePartidosToolStripMenuItem
             // 
+            this.ReportePartidosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ReportePartidosToolStripMenuItem.Name = "ReportePartidosToolStripMenuItem";
             this.ReportePartidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ReportePartidosToolStripMenuItem.Text = "Partidos";
@@ -159,13 +102,31 @@
             // 
             // ReporteVentasToolStripMenuItem
             // 
+            this.ReporteVentasToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ReporteVentasToolStripMenuItem.Name = "ReporteVentasToolStripMenuItem";
             this.ReporteVentasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ReporteVentasToolStripMenuItem.Text = "Ventas";
             this.ReporteVentasToolStripMenuItem.Click += new System.EventHandler(this.ConsultaVentasToolStripMenuItem_Click);
             // 
+            // ticketsToolStripMenuItem2
+            // 
+            this.ticketsToolStripMenuItem2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ticketsToolStripMenuItem2.Name = "ticketsToolStripMenuItem2";
+            this.ticketsToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.ticketsToolStripMenuItem2.Text = "Tickets";
+            this.ticketsToolStripMenuItem2.Click += new System.EventHandler(this.ticketsToolStripMenuItem2_Click);
+            // 
+            // reciboDeVentasToolStripMenuItem
+            // 
+            this.reciboDeVentasToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.reciboDeVentasToolStripMenuItem.Name = "reciboDeVentasToolStripMenuItem";
+            this.reciboDeVentasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reciboDeVentasToolStripMenuItem.Text = "Recibo de Ventas";
+            this.reciboDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reciboDeVentasToolStripMenuItem_Click);
+            // 
             // ConsultaVentasToolStripMenuItem
             // 
+            this.ConsultaVentasToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ConsultaVentasToolStripMenuItem.Name = "ConsultaVentasToolStripMenuItem";
             this.ConsultaVentasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ConsultaVentasToolStripMenuItem.Text = "Ventas";
@@ -173,25 +134,15 @@
             // 
             // ConsultaPartidosToolStripMenuItem
             // 
+            this.ConsultaPartidosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ConsultaPartidosToolStripMenuItem.Name = "ConsultaPartidosToolStripMenuItem";
             this.ConsultaPartidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ConsultaPartidosToolStripMenuItem.Text = "Partidos";
             this.ConsultaPartidosToolStripMenuItem.Click += new System.EventHandler(this.ConsultaPartidosToolStripMenuItem_Click);
             // 
-            // Usuariolabel
-            // 
-            this.Usuariolabel.AutoSize = true;
-            this.Usuariolabel.BackColor = System.Drawing.Color.CadetBlue;
-            this.Usuariolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Usuariolabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.Usuariolabel.Location = new System.Drawing.Point(245, 35);
-            this.Usuariolabel.Name = "Usuariolabel";
-            this.Usuariolabel.Size = new System.Drawing.Size(19, 14);
-            this.Usuariolabel.TabIndex = 6;
-            this.Usuariolabel.Text = "...";
-            // 
             // ConsultaTipoPartidosToolStripMenuItem
             // 
+            this.ConsultaTipoPartidosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ConsultaTipoPartidosToolStripMenuItem.Name = "ConsultaTipoPartidosToolStripMenuItem";
             this.ConsultaTipoPartidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ConsultaTipoPartidosToolStripMenuItem.Text = "Tipo Paritdo";
@@ -211,6 +162,7 @@
             // 
             // ConsultaUsuariosToolStripMenuItem
             // 
+            this.ConsultaUsuariosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ConsultaUsuariosToolStripMenuItem.Name = "ConsultaUsuariosToolStripMenuItem";
             this.ConsultaUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ConsultaUsuariosToolStripMenuItem.Text = "Usuarios";
@@ -218,6 +170,7 @@
             // 
             // ticketsToolStripMenuItem1
             // 
+            this.ticketsToolStripMenuItem1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ticketsToolStripMenuItem1.Name = "ticketsToolStripMenuItem1";
             this.ticketsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.ticketsToolStripMenuItem1.Text = "Tickets";
@@ -225,22 +178,25 @@
             // 
             // RegistroVentasToolStripMenuItem
             // 
+            this.RegistroVentasToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.RegistroVentasToolStripMenuItem.Name = "RegistroVentasToolStripMenuItem";
-            this.RegistroVentasToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.RegistroVentasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RegistroVentasToolStripMenuItem.Text = "Ventas";
             this.RegistroVentasToolStripMenuItem.Click += new System.EventHandler(this.RegistroVentasToolStripMenuItem_Click);
             // 
             // RegistroTipoPartidosToolStripMenuItem
             // 
+            this.RegistroTipoPartidosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.RegistroTipoPartidosToolStripMenuItem.Name = "RegistroTipoPartidosToolStripMenuItem";
-            this.RegistroTipoPartidosToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.RegistroTipoPartidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RegistroTipoPartidosToolStripMenuItem.Text = "Tipo Partidos";
             this.RegistroTipoPartidosToolStripMenuItem.Click += new System.EventHandler(this.RegistroTipoPartidosToolStripMenuItem_Click);
             // 
             // RegistroUsuariosToolStripMenuItem
             // 
+            this.RegistroUsuariosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.RegistroUsuariosToolStripMenuItem.Name = "RegistroUsuariosToolStripMenuItem";
-            this.RegistroUsuariosToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.RegistroUsuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RegistroUsuariosToolStripMenuItem.Text = "Usuarios";
             this.RegistroUsuariosToolStripMenuItem.Click += new System.EventHandler(this.RegistroUsuariosToolStripMenuItem_Click);
             // 
@@ -258,34 +214,39 @@
             // 
             // RegistroPartidosToolStripMenuItem
             // 
+            this.RegistroPartidosToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.RegistroPartidosToolStripMenuItem.Name = "RegistroPartidosToolStripMenuItem";
-            this.RegistroPartidosToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.RegistroPartidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RegistroPartidosToolStripMenuItem.Text = "Partidos";
             this.RegistroPartidosToolStripMenuItem.Click += new System.EventHandler(this.RegistroPartidosToolStripMenuItem_Click);
             // 
             // ticketsToolStripMenuItem
             // 
+            this.ticketsToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ticketsToolStripMenuItem.Name = "ticketsToolStripMenuItem";
-            this.ticketsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.ticketsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ticketsToolStripMenuItem.Text = "Tickets";
             this.ticketsToolStripMenuItem.Click += new System.EventHandler(this.ticketsToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
+            this.ExitToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitToolStripMenuItem.Text = "Exit";
             // 
             // SingOutToolStripMenuItem
             // 
+            this.SingOutToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.SingOutToolStripMenuItem.Name = "SingOutToolStripMenuItem";
-            this.SingOutToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.SingOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.SingOutToolStripMenuItem.Text = "Sing Out";
             // 
             // HelpToolStripMenuItem
             // 
+            this.HelpToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.HelpToolStripMenuItem.Text = "Help";
             this.HelpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
@@ -301,6 +262,7 @@
             // 
             // PrincipalmenuStrip
             // 
+            this.PrincipalmenuStrip.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.PrincipalmenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ArchivoToolStripMenuItem,
             this.RegistrosToolStripMenuItem,
@@ -309,37 +271,21 @@
             this.AboutToolStripMenuItem});
             this.PrincipalmenuStrip.Location = new System.Drawing.Point(0, 0);
             this.PrincipalmenuStrip.Name = "PrincipalmenuStrip";
-            this.PrincipalmenuStrip.Size = new System.Drawing.Size(580, 24);
+            this.PrincipalmenuStrip.Size = new System.Drawing.Size(594, 24);
             this.PrincipalmenuStrip.TabIndex = 4;
             this.PrincipalmenuStrip.Text = "PortadamenuStrip";
-            // 
-            // ticketsToolStripMenuItem2
-            // 
-            this.ticketsToolStripMenuItem2.Name = "ticketsToolStripMenuItem2";
-            this.ticketsToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.ticketsToolStripMenuItem2.Text = "Tickets";
-            this.ticketsToolStripMenuItem2.Click += new System.EventHandler(this.ticketsToolStripMenuItem2_Click);
-            // 
-            // reciboDeVentasToolStripMenuItem
-            // 
-            this.reciboDeVentasToolStripMenuItem.Name = "reciboDeVentasToolStripMenuItem";
-            this.reciboDeVentasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.reciboDeVentasToolStripMenuItem.Text = "Recibo de Ventas";
-            this.reciboDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reciboDeVentasToolStripMenuItem_Click);
             // 
             // PrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 241);
-            this.Controls.Add(this.Seccioniniciadalabel);
-            this.Controls.Add(this.PrincipaltoolStrip);
-            this.Controls.Add(this.Usuariolabel);
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources.UltimateSportsTicket_Media_Twitter_1024x512;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(594, 350);
             this.Controls.Add(this.PrincipalmenuStrip);
+            this.DoubleBuffered = true;
             this.Name = "PrincipalForm";
             this.Text = "PrincipalForm";
-            this.PrincipaltoolStrip.ResumeLayout(false);
-            this.PrincipaltoolStrip.PerformLayout();
             this.PrincipalmenuStrip.ResumeLayout(false);
             this.PrincipalmenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -348,19 +294,11 @@
         }
 
         #endregion
-
-        public System.Windows.Forms.Label Seccioniniciadalabel;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton VentatoolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton UsuariostoolStripButton;
-        private System.Windows.Forms.ToolStrip PrincipaltoolStrip;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReporteTipoPartidosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConsultaVentasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConsultaPartidosToolStripMenuItem;
-        public System.Windows.Forms.Label Usuariolabel;
         private System.Windows.Forms.ToolStripMenuItem ConsultaTipoPartidosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConsultasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConsultaUsuariosToolStripMenuItem;

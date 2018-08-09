@@ -62,6 +62,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -79,7 +80,7 @@
             this.UsuariodataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UsuariodataGridView.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.UsuariodataGridView.BackgroundColor = System.Drawing.Color.IndianRed;
             this.UsuariodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UsuariodataGridView.GridColor = System.Drawing.SystemColors.ControlLight;
             this.UsuariodataGridView.Location = new System.Drawing.Point(13, 121);
@@ -107,6 +108,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Cantlabel.AutoSize = true;
+            this.Cantlabel.BackColor = System.Drawing.Color.Transparent;
             this.Cantlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cantlabel.Location = new System.Drawing.Point(10, 353);
             this.Cantlabel.Name = "Cantlabel";
@@ -132,7 +134,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Filtrolabel.AutoSize = true;
+            this.Filtrolabel.BackColor = System.Drawing.Color.Transparent;
             this.Filtrolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Filtrolabel.ForeColor = System.Drawing.Color.Black;
             this.Filtrolabel.Location = new System.Drawing.Point(10, 77);
             this.Filtrolabel.Name = "Filtrolabel";
             this.Filtrolabel.Size = new System.Drawing.Size(42, 14);
@@ -195,6 +199,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(636, 404);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Imprimirbutton);

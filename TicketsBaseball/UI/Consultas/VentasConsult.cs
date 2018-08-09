@@ -85,7 +85,7 @@ namespace TicketsDeportivos.UI.Consultas
                     }
 
                     break;
-                //TipoPartidoId
+                //UsuarioId
                 case 1:
                     LimpiarError();
                     if (SetError(1))
@@ -97,15 +97,15 @@ namespace TicketsDeportivos.UI.Consultas
                     id = int.Parse(CriteriotextBox.Text);
                     if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.UsuarioId == id && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.UsuarioId.Contains(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.UsuarioId == id;
+                        filtrar = t => t.UsuarioId.Contains(CriteriotextBox.Text);
                     }
 
                     break;
-                //Nombre
+                //Precio
                 case 2:
                     LimpiarError();
                     if (SetError(2))
@@ -123,21 +123,21 @@ namespace TicketsDeportivos.UI.Consultas
                     }
 
                     break;
-                //Lugar
+                //Fecha
                 case 3:
                     LimpiarError();
                     if (SetError(2))
                     {
-                        MessageBox.Show("Introduce un caracter");
+                        MessageBox.Show("Introduce un numero");
                         return;
                     }
                     if (FechaPartidocheckBox.Checked == true)
                     {
-                        filtrar = t => t.Cantidad == Convert.ToInt32(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                        filtrar = t => t.CantidadDisponible == Convert.ToInt32(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
                     }
                     else
                     {
-                        filtrar = t => t.Cantidad == Convert.ToInt32(CriteriotextBox.Text);
+                        filtrar = t => t.CantidadDisponible == Convert.ToInt32(CriteriotextBox.Text);
                     }
 
                     break;
@@ -159,7 +159,26 @@ namespace TicketsDeportivos.UI.Consultas
                     }
 
                     break;
-                //Cantidad
+                //PartidoId
+                case 5:
+                    LimpiarError();
+                    if (SetError(2))
+                    {
+                        MessageBox.Show("Introduce un caracter");
+                        return;
+                    }
+                    if (FechaPartidocheckBox.Checked == true)
+                    {
+                        filtrar = t => t.PartidoId.Contains(CriteriotextBox.Text) && (t.Fecha.Day >= DesdedateTimePicker.Value.Day) && (t.Fecha.Month >= DesdedateTimePicker.Value.Month) && (t.Fecha.Year >= DesdedateTimePicker.Value.Year) && (t.Fecha.Day <= HastadateTimePicker.Value.Day) && (t.Fecha.Month <= HastadateTimePicker.Value.Month) && (t.Fecha.Year <= HastadateTimePicker.Value.Year);
+                    }
+                    else
+                    {
+                        filtrar = t => t.PartidoId.Contains(CriteriotextBox.Text);
+                    }
+
+                    break;
+
+                //Total
                 case 6:
                     LimpiarError();
                     if (SetError(1))

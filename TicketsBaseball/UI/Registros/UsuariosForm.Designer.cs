@@ -65,6 +65,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))));
             this.Titulolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -163,6 +164,7 @@
             // ActivocheckBox
             // 
             this.ActivocheckBox.AutoSize = true;
+            this.ActivocheckBox.BackColor = System.Drawing.Color.Transparent;
             this.ActivocheckBox.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.ActivocheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ActivocheckBox.Location = new System.Drawing.Point(325, 213);
@@ -170,7 +172,7 @@
             this.ActivocheckBox.Size = new System.Drawing.Size(65, 18);
             this.ActivocheckBox.TabIndex = 43;
             this.ActivocheckBox.Text = "Activo";
-            this.ActivocheckBox.UseVisualStyleBackColor = true;
+            this.ActivocheckBox.UseVisualStyleBackColor = false;
             // 
             // NombreUsuariotextBox
             // 
@@ -204,6 +206,7 @@
             // Contrasenialabel
             // 
             this.Contrasenialabel.AutoSize = true;
+            this.Contrasenialabel.BackColor = System.Drawing.Color.Transparent;
             this.Contrasenialabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.Contrasenialabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Contrasenialabel.Location = new System.Drawing.Point(348, 115);
@@ -215,6 +218,7 @@
             // ConfirmarContrasenialabel
             // 
             this.ConfirmarContrasenialabel.AutoSize = true;
+            this.ConfirmarContrasenialabel.BackColor = System.Drawing.Color.Transparent;
             this.ConfirmarContrasenialabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.ConfirmarContrasenialabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ConfirmarContrasenialabel.Location = new System.Drawing.Point(284, 163);
@@ -226,6 +230,7 @@
             // NombreUsuariolabel
             // 
             this.NombreUsuariolabel.AutoSize = true;
+            this.NombreUsuariolabel.BackColor = System.Drawing.Color.Transparent;
             this.NombreUsuariolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.NombreUsuariolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.NombreUsuariolabel.Location = new System.Drawing.Point(322, 70);
@@ -237,6 +242,7 @@
             // Direccionlabel
             // 
             this.Direccionlabel.AutoSize = true;
+            this.Direccionlabel.BackColor = System.Drawing.Color.Transparent;
             this.Direccionlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.Direccionlabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Direccionlabel.Location = new System.Drawing.Point(19, 312);
@@ -248,6 +254,7 @@
             // Emaillabel
             // 
             this.Emaillabel.AutoSize = true;
+            this.Emaillabel.BackColor = System.Drawing.Color.Transparent;
             this.Emaillabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.Emaillabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Emaillabel.Location = new System.Drawing.Point(43, 264);
@@ -259,6 +266,7 @@
             // Telefonolabel
             // 
             this.Telefonolabel.AutoSize = true;
+            this.Telefonolabel.BackColor = System.Drawing.Color.Transparent;
             this.Telefonolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.Telefonolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Telefonolabel.Location = new System.Drawing.Point(23, 220);
@@ -270,6 +278,7 @@
             // Apellidoslabel
             // 
             this.Apellidoslabel.AutoSize = true;
+            this.Apellidoslabel.BackColor = System.Drawing.Color.Transparent;
             this.Apellidoslabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.Apellidoslabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Apellidoslabel.Location = new System.Drawing.Point(21, 173);
@@ -281,6 +290,7 @@
             // Nombreslabel
             // 
             this.Nombreslabel.AutoSize = true;
+            this.Nombreslabel.BackColor = System.Drawing.Color.Transparent;
             this.Nombreslabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.Nombreslabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Nombreslabel.Location = new System.Drawing.Point(21, 133);
@@ -292,6 +302,7 @@
             // UsuarioIdlabel
             // 
             this.UsuarioIdlabel.AutoSize = true;
+            this.UsuarioIdlabel.BackColor = System.Drawing.Color.Transparent;
             this.UsuarioIdlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.UsuarioIdlabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.UsuarioIdlabel.Location = new System.Drawing.Point(13, 71);
@@ -359,12 +370,14 @@
             this.IdnumericUpDown.Name = "IdnumericUpDown";
             this.IdnumericUpDown.Size = new System.Drawing.Size(87, 20);
             this.IdnumericUpDown.TabIndex = 48;
-            this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
+           // this.IdnumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdnumericUpDown_KeyPress);
             // 
             // UsuariosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(579, 438);
             this.Controls.Add(this.IdnumericUpDown);
             this.Controls.Add(this.Titulolabel);

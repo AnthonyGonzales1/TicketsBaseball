@@ -15,5 +15,10 @@ namespace TicketsDeportivos
         {
             InitializeComponent();
         }
+
+        private void textBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

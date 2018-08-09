@@ -20,10 +20,12 @@ namespace TicketsDeportivos.UI.Registros
         public PartidosForm()
         {
             InitializeComponent();
+            LlenarComboBox();
         }
 
         private void Limpiar()
         {
+            IdnumericUpDown.Value = 0;
             NombrePartidotextBox.Clear();
             LugarPartidotextBox.Clear();
             FechadateTimePicker.ResetText();
@@ -59,26 +61,26 @@ namespace TicketsDeportivos.UI.Registros
                 IderrorProvider.SetError(IdnumericUpDown, "Llenar Partido Id");
                 paso = true;
             }
-            /*if (error == 2 && TipoPartidocomboBox.Text == string.Empty)
+            if (error == 2 && TipoPartidocomboBox.Text == string.Empty)
             {
                 errorProvider.SetError(TipoPartidocomboBox,
                    "Debes seleccionar un Tipo de Partido");
                 paso = true;
-            }*/
-            if (error == 3 && NombrePartidotextBox.Text == string.Empty)
+            }
+            if (error == 2 && NombrePartidotextBox.Text == string.Empty)
             {
                 errorProvider.SetError(NombrePartidotextBox,
                    "Debes ingresar un Nombre");
                 paso = true;
             }
-            if (error == 3 && LugarPartidotextBox.Text == string.Empty)
+            if (error == 2 && LugarPartidotextBox.Text == string.Empty)
             {
                 errorProvider.SetError(LugarPartidotextBox,
                     "Debes ingresar un Lugar");
                 paso = true;
             }
             
-            if (error == 4 && CantidadtextBox.Text == string.Empty)
+            if (error == 2 && CantidadtextBox.Text == string.Empty)
             {
                 errorProvider.SetError(CantidadtextBox,
                     "Debes ingresar una Cantidad");
@@ -121,14 +123,16 @@ namespace TicketsDeportivos.UI.Registros
 
         private Partido Llenaclase()
         {
+            Partido partido = new Partido();
             if (IdnumericUpDown.Value == 0)
             {
                 partido.PartidoId = 0;
             }
             else
             {
-                partido.PartidoId = (int)IdnumericUpDown.Value;
-                partido.TipoPartidoId = Convert.ToInt32(TipoPartidocomboBox.Text);
+                partido.PartidoId = Convert.ToInt32(IdnumericUpDown.Value);
+            }
+                partido.TipoPartidoId = Convert.ToString(TipoPartidocomboBox.Text);
                 partido.NombrePartido = NombrePartidotextBox.Text;
                 partido.FechaPartido = FechadateTimePicker.Value;
                 partido.LugarPartido = LugarPartidotextBox.Text;
@@ -136,7 +140,6 @@ namespace TicketsDeportivos.UI.Registros
                 partido.CantidadDisponible = Convert.ToInt32(CantidadtextBox.Text);
                 partido.PrecioTicket = Convert.ToInt32(PreciocomboBox.Text);
                 partido.TicketId = Convert.ToInt32(TicketcomboBox.Text);
-            }
                 
             return partido;
         }
@@ -164,6 +167,7 @@ namespace TicketsDeportivos.UI.Registros
                     PreciocomboBox.Text = partido.PrecioTicket.ToString();
                     TicketcomboBox.Text = partido.TicketId.ToString();
 
+                    PartidodataGridView.DataSource = partido.Detalle;
                 }
                 else
                 {
@@ -183,74 +187,63 @@ namespace TicketsDeportivos.UI.Registros
             if (Validar(2))
             {
                 MessageBox.Show("Llenar Campos vacios");
+                errorProvider.Clear();
                 return;
             }
-            Partido partido = Llenaclase();
-            if (IdnumericUpDown.Value == 0)
-            {
-                if (BLL.PartidosBLL.Guardar(partido))
-                {
-                    MessageBox.Show("Guardado!!");
-                    
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo Guardar!!");
-                }
-            }
             else
-            {
-                var result = MessageBox.Show("Seguro de Modificar?", "+Ventas",
-                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+            { 
+                partido = Llenaclase();
+                if (IdnumericUpDown.Value == 0)
                 {
-                    if (BLL.PartidosBLL.Modificar(Llenaclase()))
+                    if (BLL.PartidosBLL.Guardar(partido))
                     {
-                        MessageBox.Show("Modificado!!");
+                        MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpiar();
                     }
                     else
                     {
                         MessageBox.Show("No se pudo Guardar!!");
                     }
                 }
+                else
+                {
+                    var result = MessageBox.Show("Seguro de Modificar?", "+Partidos",
+                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        if (BLL.PartidosBLL.Modificar(Llenaclase()))
+                        {
+                            MessageBox.Show("Modificado!!");
+                            Limpiar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo Guardar!!");
+                        }
+                    }
+                }
             }
         }
 
-        private void PartidosForm_Load(object sender, EventArgs e)
+        private void LlenarComboBox()
         {
-            TicketcomboBox.Items.Clear();
-            foreach (var item in BLL.TicketBLL.GetList(x => true))
-            {
-                TicketcomboBox.Items.Add(item.TicketId);
-            }
-            DescripcioncomboBox.Items.Clear();
-            foreach (var item in BLL.TicketBLL.GetList(x => true))
-            {
-                DescripcioncomboBox.Items.Add(item.Descripcion);
-            }
-            PreciocomboBox.Items.Clear();
-            foreach (var item in BLL.TicketBLL.GetList(x => true))
-            {
-                PreciocomboBox.Items.Add(item.PrecioTicket);
-            }
+            Repositorio<Ticket> ticket = new Repositorio<Ticket>(new Contexto());
+            TicketcomboBox.DataSource = ticket.GetList(c => true);
+            TicketcomboBox.ValueMember = "TicketId";
+            TicketcomboBox.DisplayMember = "TicketId";
+            DescripcioncomboBox.DataSource = ticket.GetList(c => true);
+            DescripcioncomboBox.ValueMember = "Descripcion";
+            DescripcioncomboBox.DisplayMember = "Descripcion";
+            PreciocomboBox.DataSource = ticket.GetList(c => true);
+            PreciocomboBox.ValueMember = "PrecioTicket";
+            PreciocomboBox.DisplayMember = "PrecioTicket";
 
-            TipoPartidocomboBox.Items.Clear();
-            foreach (var item in BLL.TipoPartidosBLL.GetList(x => true))
-            {
-                TipoPartidocomboBox.Items.Add(item.Descripcion);
-            }
-        }
+            Repositorio<TipoPartido> tipoPartido = new Repositorio<TipoPartido>(new Contexto());
+            TipoPartidocomboBox.DataSource = tipoPartido.GetList(c => true);
+            TipoPartidocomboBox.ValueMember = "TipoPartidoId";
+            TipoPartidocomboBox.DisplayMember = "Descripcion";
 
-        private void CantidadnumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            if (Validar(4))
-            {
-                MessageBox.Show("Debe Buscar Antes de poner una cantidad");
-                CantidadtextBox.Text = string.Empty;
-                return;
-            }
         }
 
         private void Agregarbutton_Click_1(object sender, EventArgs e)
@@ -259,7 +252,7 @@ namespace TicketsDeportivos.UI.Registros
             if (Validar(2))
             {
                 MessageBox.Show("Llene los Campos", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }/*
             if (PreciocomboBox.Text == string.Empty || TicketcomboBox.Text == string.Empty ||DescripcioncomboBox.Text == string.Empty)
             {
                 partido.Detalle.Add(new PartidoDetalle
@@ -270,7 +263,7 @@ namespace TicketsDeportivos.UI.Registros
                         Convert.ToInt32(PreciocomboBox.Text)
 
                     ));
-            }
+            }*/
             else
             {
                 partido.Detalle.Add(new PartidoDetalle
@@ -287,72 +280,15 @@ namespace TicketsDeportivos.UI.Registros
                 PartidodataGridView.DataSource = partido.Detalle;
             }
         }
-        
-        private void IdnumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(IdnumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                Buscarbutton.Focus();
-            }
-        }
-
-        
-        
-        private void NombrePartidotextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 32) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(NombrePartidotextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                FechadateTimePicker.Focus();
-            }
-        }
-
-        private void LugarPartidotextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar >= 97 && e.KeyChar <= 122) || (e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 32) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(LugarPartidotextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                DescripcioncomboBox.Focus();
-            }
-        }
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
-            Limpiar();
             if (Validar(1))
             {
                 MessageBox.Show("Llenar campos Vacios");
                 return;
             }
-            var result = MessageBox.Show("Seguro de  Eliminar?", "+Ventas",
+            var result = MessageBox.Show("Seguro de  Eliminar?", "+Partidos",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -360,7 +296,6 @@ namespace TicketsDeportivos.UI.Registros
                 if (BLL.PartidosBLL.Eliminar(Convert.ToInt32(IdnumericUpDown.Value)))
                 {
                     MessageBox.Show("Eliminado");
-                    IdnumericUpDown.Value = 0;
                     Limpiar();
                 }
                 else
@@ -372,7 +307,7 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Borrarbutton_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Desea Eliminar el detalle seleccionado?", "+Partido",
+            var result = MessageBox.Show("Desea Eliminar el detalle seleccionado?", "+Partidos",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -390,14 +325,19 @@ namespace TicketsDeportivos.UI.Registros
             }
         }
 
-        private void Titulolabel_Click(object sender, EventArgs e)
+        private void CantidadtextBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
 
-        }
-
-        private void TipoPartidocomboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
+            {
+                e.Handled = false;
+                errorProvider.Clear();
+            }
+            else
+            {
+                e.Handled = true;
+                errorProvider.SetError(CantidadtextBox, "Este campo no acepta el tipo de caracter que acaba de digitar");
+            }
         }
     }
 }

@@ -22,15 +22,14 @@ namespace TicketsDeportivos.UI.Registros
         private Usuario Llenaclase()
         {
             Usuario usuario = new Usuario();
-            if (usuario.UsuarioId == 0)
+            if (IdnumericUpDown.Value == 0)
             {
                 usuario.UsuarioId = 0;
             }
             else
             {
-                usuario.UsuarioId = Convert.ToInt32(usuario.UsuarioId);
+                usuario.UsuarioId = Convert.ToInt32(IdnumericUpDown.Value);
             }
-            
             usuario.Nombres = NombrestextBox.Text;
             usuario.Apellidos = ApellidostextBox.Text;
             usuario.Telefono = TelefonomaskedTextBox.Text;
@@ -54,6 +53,7 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Limpiar()
         {
+            IdnumericUpDown.Value = 0;
             NombrestextBox.Clear();
             ApellidostextBox.Clear();
             TelefonomaskedTextBox.Clear();
@@ -188,49 +188,46 @@ namespace TicketsDeportivos.UI.Registros
         {
             MessageBox.Show(mensaje, "Registro de Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
-        
-        private void NombreUsuariotextBox_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            //if (e.KeyCode == keys.Enter)
-            //{
-            //    if (this.GetNextControl(ActiveControl, true) != null)
-            //    {
-            //        e.Handled = true;
-            //        this.GetNextControl(ActiveControl, true).Focus();
-            //    }
-            //}
-        }
 
         private void Guardarbutton_Click_1(object sender, EventArgs e)
         {
-            Usuario usuario = Llenaclase();
-            if (IdnumericUpDown.Value == 0)
+            if (Validar(2))
             {
-                if (BLL.UsuarioBLL.Guardar(usuario))
-                {
-                    MessageBox.Show("Guardado!!");
-                    IdnumericUpDown.Value = 0;
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo Guardar!!");
-                }
+                MessageBox.Show("Llenar los Campos vacios");
+                errorProvider.Clear();
+                return;
             }
             else
             {
-                var result = MessageBox.Show("Seguro de Modificar?", "+Usuarios",
-                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                Usuario usuario = Llenaclase();
+                if (IdnumericUpDown.Value == 0)
                 {
-                    if (BLL.UsuarioBLL.Modificar(Llenaclase()))
+                    if (BLL.UsuarioBLL.Guardar(usuario))
                     {
-                        MessageBox.Show("Modificado!!");
+                        MessageBox.Show("Guardado!!");
+                        Limpiar();
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo modificar!!");
+                        MessageBox.Show("No se pudo Guardar!!");
+                    }
+                }
+                else
+                {
+                    var result = MessageBox.Show("Seguro de Modificar?", "+Usuarios",
+                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        if (BLL.UsuarioBLL.Modificar(Llenaclase()))
+                        {
+                            MessageBox.Show("Modificado!!");
+                            Limpiar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo modificar!!");
+                        }
                     }
                 }
             }
@@ -242,22 +239,20 @@ namespace TicketsDeportivos.UI.Registros
             {
                 MessageBox.Show("Favor de Llenar casilla para poder Eliminar");
             }
-            else
+            var result = MessageBox.Show("Seguro de  Eliminar?", "+Usuarios",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                int id = Convert.ToInt32(IdnumericUpDown.Value);
-
-                if (BLL.UsuarioBLL.Eliminar(id))
+                if (BLL.UsuarioBLL.Eliminar(Convert.ToInt32(IdnumericUpDown.Value)))
                 {
-                    MessageBox.Show("Eliminado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    IdnumericUpDown.Value = 0;
+                    MessageBox.Show("Eliminado");
                     Limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("No Pudo Eliminar!", "Fallido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo eliminar");
                 }
-                errorProvider.Clear();
             }
         }
 
@@ -389,8 +384,15 @@ namespace TicketsDeportivos.UI.Registros
                     NombreUsuariotextBox.Text = usuario.NombreUsuario.ToString();
                     ContrasenatextBox.Text = usuario.Contrasena.ToString();
                     ConfirmarContrasenatextBox.Text = usuario.ConfirmarContrasena.ToString();
-                    ActivocheckBox.Text = usuario.Activo.ToString();
-                    FotopictureBox.Text = usuario.Foto.ToString();
+                    if (usuario.Activo == 1)
+                    {
+                        ActivocheckBox.Checked = true;
+                    }
+                    else
+                    {
+                        ActivocheckBox.Checked = false;
+                    }
+                    FotopictureBox.ImageLocation = usuario.Foto;
 
                 }
                 else
@@ -452,24 +454,6 @@ namespace TicketsDeportivos.UI.Registros
             if (e.KeyChar == 13)
             {
                 ContrasenatextBox.Focus();
-            }
-        }
-
-        private void IdnumericUpDown_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if ((e.KeyChar >= 48 && e.KeyChar <= 57) || (e.KeyChar == 8) || (e.KeyChar == 127) || (e.KeyChar == 13))
-            {
-                e.Handled = false;
-                errorProvider.Clear();
-            }
-            else
-            {
-                e.Handled = true;
-                errorProvider.SetError(IdnumericUpDown, "Este campo no acepta el tipo de caracter que acaba de digitar");
-            }
-            if (e.KeyChar == 13)
-            {
-                Buscarbutton.Focus();
             }
         }
     }

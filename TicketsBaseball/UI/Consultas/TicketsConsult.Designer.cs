@@ -61,6 +61,7 @@
             // Titulolabel
             // 
             this.Titulolabel.AutoSize = true;
+            this.Titulolabel.BackColor = System.Drawing.Color.Transparent;
             this.Titulolabel.Font = new System.Drawing.Font("Tahoma", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulolabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -73,6 +74,7 @@
             // Cantlabel
             // 
             this.Cantlabel.AutoSize = true;
+            this.Cantlabel.BackColor = System.Drawing.Color.Transparent;
             this.Cantlabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cantlabel.Location = new System.Drawing.Point(12, 296);
             this.Cantlabel.Name = "Cantlabel";
@@ -91,6 +93,7 @@
             // Filtrolabel
             // 
             this.Filtrolabel.AutoSize = true;
+            this.Filtrolabel.BackColor = System.Drawing.Color.Transparent;
             this.Filtrolabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Filtrolabel.Location = new System.Drawing.Point(12, 65);
             this.Filtrolabel.Name = "Filtrolabel";
@@ -155,6 +158,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TicketsDeportivos.Properties.Resources._1378144182;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(516, 333);
             this.Controls.Add(this.Imprimirbutton);
             this.Controls.Add(this.Titulolabel);

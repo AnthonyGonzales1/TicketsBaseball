@@ -11,7 +11,7 @@ namespace TicketsDeportivos.Entidades
     {
         [Key]
         public int PartidoId { get; set; }
-        public int TipoPartidoId { get; set; }
+        public string TipoPartidoId { get; set; }
         public int TicketId { get; set; }
         public string NombrePartido { get; set; }
         public DateTime FechaPartido { get; set; }
@@ -24,7 +24,7 @@ namespace TicketsDeportivos.Entidades
         public Partido()
         {
             this.PartidoId = 0;
-            this.TipoPartidoId = 0;
+            this.TipoPartidoId = string.Empty;
             this.TicketId = 0;
             this.NombrePartido = string.Empty;
             this.FechaPartido =DateTime.Now;

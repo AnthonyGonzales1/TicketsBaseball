@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 using TicketsDeportivos.BLL;
@@ -14,14 +15,16 @@ namespace TicketsDeportivos.UI.Registros
 {
     public partial class VentasForm : Form
     {
+        Expression<Func<Venta, bool>> filtrar = x => true;
         public int RowSelected { get; set; }
-        List<Venta> Ventapartido = new List<Venta>();
+        List<VentaDetalle> Detalle = new List<VentaDetalle>();
         Venta venta = new Venta();
         public VentasForm()
         {
             InitializeComponent();
+            LlenarComboBox();
         }
-        
+
         private void MensajeOk(string mensaje)
         {
             MessageBox.Show(mensaje, "Registro de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -39,6 +42,7 @@ namespace TicketsDeportivos.UI.Registros
 
         private void Limpiar()
         {
+            IdnumericUpDown.Value = 0;
             UsuarioscomboBox.Text = string.Empty;
             PartidocomboBox.Text = string.Empty;
             TotaltextBox.Clear();
@@ -51,21 +55,31 @@ namespace TicketsDeportivos.UI.Registros
         private Venta LlenaClase()
         {
             Venta venta = new Venta();
-            if (venta.VentaId == 0)
+            if (IdnumericUpDown.Value == 0)
             {
                 venta.VentaId = 0;
             }
             else
             {
-                venta.VentaId = Convert.ToInt32(venta.VentaId);
+                venta.VentaId = Convert.ToInt32(IdnumericUpDown.Value);
             }
-            
-            venta.UsuarioId = Convert.ToInt32(UsuarioscomboBox.SelectedValue);
+            venta.UsuarioId = Convert.ToString(UsuarioscomboBox.Text);
             venta.Fecha = FechadateTimePicker.Value;
-            venta.Ticket = Convert.ToInt32(TicketcomboBox.SelectedValue);
-            venta.Cantidad = Convert.ToInt32(CantidadcomboBox.Text);
+            venta.CantidadDisponible = Convert.ToInt32(CantidadcomboBox.Text);
             venta.Descripcion = DescripcionrichTextBox.Text;
-           
+            venta.PartidoId = Convert.ToString(PartidocomboBox.Text);
+            venta.Ticket = Convert.ToInt32(TicketcomboBox.Text);
+            venta.Total = Convert.ToInt32(TotaltextBox.CanSelect);
+            int precio = 0;
+            int cantidad = 0;
+            int.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
+            int.TryParse(CantidadcomboBox.Text, out cantidad);
+            if (CantidadcomboBox.Text.Length > 0)
+            {
+                TotaltextBox.Text = (precio * cantidad).ToString();
+                List<VentaDetalle> ventaDetalles = new List<VentaDetalle>();
+            }
+
             return venta;
         }
 
@@ -84,6 +98,13 @@ namespace TicketsDeportivos.UI.Registros
                    "Debes seleccionar un Usuario");
                 paso = true;
             }
+
+            if (error == 2 && PartidocomboBox.Text == string.Empty)
+            {
+                errorProvider.SetError(PartidocomboBox,
+                   "Debes seleccionar un Partido");
+                paso = true;
+            }
             if (error == 2 && TicketcomboBox.Text == string.Empty)
             {
                 errorProvider.SetError(TicketcomboBox,
@@ -91,23 +112,17 @@ namespace TicketsDeportivos.UI.Registros
                 paso = true;
             }
 
-            if (error == 3 && CantidadcomboBox.Text == string.Empty)
+            if (error == 2 && CantidadcomboBox.Text == string.Empty)
             {
                 errorProvider.SetError(CantidadcomboBox,
                     "Debes ingresar una Cantidad");
                 paso = true;
             }
 
-            if (error == 4 && DescripcionrichTextBox.Text == string.Empty)
+            if (error == 2 && DescripcionrichTextBox.Text == string.Empty)
             {
                 errorProvider.SetError(DescripcionrichTextBox,
                     "Debes ingresar una Descripcion");
-                paso = true;
-            }
-            if (error == 4 && TotaltextBox.Text == string.Empty)
-            {
-                errorProvider.SetError(TotaltextBox,
-                    "Debes ingresar un Total");
                 paso = true;
             }
 
@@ -118,8 +133,9 @@ namespace TicketsDeportivos.UI.Registros
         {
             UsuarioscomboBox.Text = venta.UsuarioId.ToString();
             FechadateTimePicker.Text = venta.Fecha.ToString();
+            PartidocomboBox.Text = venta.PartidoId.ToString();
             TicketcomboBox.Text = venta.Ticket.ToString();
-            CantidadcomboBox.Text = venta.Cantidad.ToString();
+            CantidadcomboBox.Text = venta.CantidadDisponible.ToString();
             DescripcionrichTextBox.Text = venta.Descripcion.ToString();
             TotaltextBox.Text = venta.Total.ToString();
         }
@@ -128,27 +144,28 @@ namespace TicketsDeportivos.UI.Registros
         {
             Limpiar();
         }
-        
+
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
             if (Validar(1))
             {
                 MessageBox.Show("Favor de llenar la casilla para poder Eliminar");
+                errorProvider.Clear();
             }
-            else
-            {
-                int id = Convert.ToInt32(IdnumericUpDown.Value);
+            var result = MessageBox.Show("Seguro de  Eliminar?", "+Ventas",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (BLL.VentasBLL.Eliminar(id))
+            if (result == DialogResult.Yes)
+            {
+                if (BLL.VentasBLL.Eliminar(Convert.ToInt32(IdnumericUpDown.Value)))
                 {
-                    MessageBox.Show("Eliminado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Eliminado");
                     Limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("No pudo Eliminar!", "Fallido!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo eliminar");
                 }
-                errorProvider.Clear();
             }
         }
 
@@ -165,44 +182,61 @@ namespace TicketsDeportivos.UI.Registros
                 if (venta != null)
                 {
                     IdnumericUpDown.Value = venta.VentaId;
-                    UsuarioscomboBox.SelectedValue = venta.UsuarioId;
+                    UsuarioscomboBox.Text = venta.UsuarioId.ToString();
                     FechadateTimePicker.Value = venta.Fecha;
+                    PartidocomboBox.Text = venta.PartidoId.ToString();
                     TicketcomboBox.Text = venta.Ticket.ToString();
-                    CantidadcomboBox.Text = venta.Cantidad.ToString();
+                    CantidadcomboBox.Text = venta.CantidadDisponible.ToString();
                     DescripcionrichTextBox.Text = venta.Descripcion.ToString();
                     TotaltextBox.Text = venta.Total.ToString();
-                    
+                    int precio = 0;
+                    int cantidad = 0;
+                    int.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
+                    int.TryParse(CantidadcomboBox.Text, out cantidad);
+                    if (CantidadcomboBox.Text.Length > 0)
+                    {
+                        TotaltextBox.Text = (precio * cantidad).ToString();
+                        List<VentaDetalle> ventaDetalles = new List<VentaDetalle>();
+                    }
                 }
                 else
                 {
                     MessageBox.Show("No Fue Encontrado!", "Fallido", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                errorProvider.Clear();
-                int precio = 0;
-                int cantidad = 0;
-                int.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
-                int.TryParse(CantidadcomboBox.Text, out cantidad);
-                if (CantidadcomboBox.Text.Length > 0)
-                {
-                    TotaltextBox.Text = (precio * cantidad).ToString();
                 }
             }
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
-            bool paso = false;
-            Venta venta = LlenaClase();
-
             if (Validar(2))
             {
-                MessageBox.Show("Favor de llenar las Casillas");
+                MessageBox.Show("Llenar Campos vacios");
+                errorProvider.Clear();
+                return;
             }
             else
             {
+                venta = LlenaClase();
                 if (IdnumericUpDown.Value == 0)
                 {
-                    paso = BLL.VentasBLL.Guardar(venta);
+                    int precio = 0;
+                    int cantidad = 0;
+                    int.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
+                    int.TryParse(CantidadcomboBox.Text, out cantidad);
+                    if (CantidadcomboBox.Text.Length > 0)
+                    {
+                        TotaltextBox.Text = (precio * cantidad).ToString();
+                        List<VentaDetalle> ventaDetalles = new List<VentaDetalle>();
+                    }
+                    if (BLL.VentasBLL.Guardar(venta))
+                    {
+                        MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo Guardar!!");
+                    }
                 }
                 else
                 {
@@ -214,24 +248,15 @@ namespace TicketsDeportivos.UI.Registros
                         if (BLL.VentasBLL.Modificar(LlenaClase()))
                         {
                             MessageBox.Show("Modificado!!");
+                            Limpiar();
                         }
-                    }
-                    Limpiar();
-                    errorProvider.Clear();
-                    if (paso)
-                    {
-                        MessageBox.Show("Guardado!", "Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No pudo Guardar!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
         }
         private void Imprimirbutton_Click_1(object sender, EventArgs e)
         {
-            Consultas.VentasConsult ven = new Consultas.VentasConsult();
+            Reportes.VentasReciboReviewer ven = new Reportes.VentasReciboReviewer(BLL.VentasBLL.GetList(filtrar));
             ven.Show();
         }
 
@@ -266,35 +291,88 @@ namespace TicketsDeportivos.UI.Registros
                 Buscarbutton.Focus();
             }
         }
-        
 
-        private void VentasForm_Load(object sender, EventArgs e)
+
+        private void LlenarComboBox()
         {
             Repositorio<Partido> partido = new Repositorio<Partido>(new Contexto());
             PartidocomboBox.DataSource = partido.GetList(c => true);
-            PartidocomboBox.DisplayMember = "NombrePartido";
             PartidocomboBox.ValueMember = "PartidoId";
+            PartidocomboBox.DisplayMember = "NombrePartido";
+            CantidadcomboBox.DataSource = partido.GetList(c => true);
+            CantidadcomboBox.ValueMember = "CantidadDisponible";
+            CantidadcomboBox.DisplayMember = "CantidadDisponible";
 
-            FechadateTimePicker.Enabled = false;
-            TicketcomboBox.DataSource = partido.GetList(c => true);
-            TicketcomboBox.DisplayMember = "PrecioTicket";
+            Repositorio<Ticket> ticket = new Repositorio<Ticket>(new Contexto());
+            TicketcomboBox.DataSource = ticket.GetList(c => true);
             TicketcomboBox.ValueMember = "PrecioTicket";
+            TicketcomboBox.DisplayMember = "PrecioTicket";
 
             Repositorio<Usuario> usuario = new Repositorio<Usuario>(new Contexto());
             UsuarioscomboBox.DataSource = usuario.GetList(c => true);
-            UsuarioscomboBox.DisplayMember = "NombreUsuario";
             UsuarioscomboBox.ValueMember = "UsuarioId";
-            
-            CantidadcomboBox.Items.Clear();
-            foreach (var item in BLL.PartidosBLL.GetList(x => true))
+            UsuarioscomboBox.DisplayMember = "NombreUsuario";
+        }
+
+        private void Borrarbutton_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Desea Eliminar el detalle seleccionado?", "+Partidos",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                CantidadcomboBox.Items.Add(item.CantidadDisponible);
+                if (RowSelected >= 0)
+                {
+                    VentaDetalle ventaDetalle = venta.Detalle.ElementAt(RowSelected);
+                    Detalle.Add(new VentaDetalle(venta.UsuarioId, venta.PartidoId, venta.Ticket, venta.Total, venta.Fecha));
+                    venta.Detalle.RemoveAt(RowSelected);
+                    VentadataGridView.DataSource = null;
+                    VentadataGridView.DataSource = venta.Detalle;
+                    RowSelected = -1;
+                    MessageBox.Show("Eliminado!");
+                }
             }
         }
 
-        private void TotaltextBox_TextChanged(object sender, EventArgs e)
+        private void Agregarbutton_Click(object sender, EventArgs e)
         {
+            int precio = 0;
+            int cantidad = 0;
+            int.TryParse(TicketcomboBox.SelectedValue.ToString(), out precio);
+            int.TryParse(CantidadcomboBox.Text, out cantidad);
+            if (CantidadcomboBox.Text.Length > 0)
+            {
+                TotaltextBox.Text = (precio * cantidad).ToString();
+                List<VentaDetalle> ventaDetalles = new List<VentaDetalle>();
+            }
+            if (Validar(2))
+            {
+                MessageBox.Show("Llene los Campos", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }/*
+            if (UsuarioscomboBox.Text == string.Empty || TicketcomboBox.Text == string.Empty || PartidocomboBox.Text == string.Empty || TotaltextBox.Text == string.Empty)
+            {
+                venta.Detalle.Add(new VentaDetalle
+                        (Convert.ToString(UsuarioscomboBox.Text),
+                        Convert.ToString(PartidocomboBox.Text),
+                        Convert.ToInt32(TicketcomboBox.Text),
+                        Convert.ToInt32(TotaltextBox.Text),
+                        Convert.ToDateTime(FechadateTimePicker.Text)
+                    ));
+            }*/
+            else
+            {
+                venta.Detalle.Add(new VentaDetalle
+                        (Convert.ToString(UsuarioscomboBox.Text),
+                        Convert.ToString(PartidocomboBox.Text),
+                        Convert.ToInt32(TicketcomboBox.Text),
+                        Convert.ToInt32(TotaltextBox.Text),
+                        Convert.ToDateTime(FechadateTimePicker.Text)
+                    ));
 
+                //Cargar el detalle al Grid
+                VentadataGridView.DataSource = null;
+                VentadataGridView.DataSource = venta.Detalle;
+            }
         }
     }
 }
